@@ -33,6 +33,17 @@ class Project(models.Model):
     start_date = models.DateField(blank=False,unique=False)
     end_date = models.DateField(blank=False,unique=False,validators=[validate_duration])
 
+    project_status_choices = [
+        ('in progress', 'In Progress'),
+        ('not started', 'Not Started'),
+        ('completed', 'Completed'),
+    ]
+    # Define the categorical column using CharField with choices
+    approval = models.CharField(choices= project_status_choices, default='not started')
+    license = models.CharField(max_length=256,blank=False,unique=False)
+    repository_link = models.URLField(unique=False,blank=False)
+    demo_link = models.URLField(unique=False,blank=False)
+    dataset_link = models.URLField(unique=False,blank=False)
 
 # Connecting models
 class PersonSkills(models.Model):
