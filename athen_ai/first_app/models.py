@@ -8,9 +8,9 @@ def validate_duration(start_date, end_date):
 # MAIN MODELS
 class User(models.Model):
     user_id = models.PositiveIntegerField(primary_key=True,unique=True,blank=False)
-    name = models.CharField(unique=True,blank=False)
-    first_name = models.CharField(unique=False,blank=False)
-    last_name = models.CharField(unique=False,blank=True)
+    name = models.CharField(unique=True,blank=False,max_length=20)
+    first_name = models.CharField(unique=False,blank=False,max_length=20)
+    last_name = models.CharField(unique=False,blank=True,max_length=20)
     email = models.EmailField(blank=False)
 
 class Domain(models.Model):
@@ -39,7 +39,7 @@ class Project(models.Model):
         ('completed', 'Completed'),
     ]
     # Define the categorical column using CharField with choices
-    approval = models.CharField(choices= project_status_choices, default='not started')
+    approval = models.CharField(choices= project_status_choices, default='not started',max_length=20)
     license = models.CharField(max_length=256,blank=False,unique=False)
     repository_link = models.URLField(unique=False,blank=False)
     demo_link = models.URLField(unique=False,blank=False)
@@ -47,22 +47,29 @@ class Project(models.Model):
 
 # Connecting models
 class PersonSkills(models.Model):
-
+    row_no = models.PositiveIntegerField(primary_key=True)
     person = models.ForeignKey(User,on_delete=models.CASCADE)
     skill = models.ForeignKey(Skills,on_delete=models.CASCADE)
-
+    
+    # TODO: add constraints to check that combination of project and domain are unique
     class Meta:
-
-        primary_key = ['person','skill']
+        unique_together = ['person','skill']
 
 
 class ProjectSkillsReq(models.Model):
 
+    row_no = models.PositiveIntegerField(primary_key=True)
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
     skill = models.ForeignKey(Skills,on_delete=models.CASCADE)
     weightage = models.IntegerField(blank=False)
 
+    class Meta:
+        unique_together = ['project','skill','weightage']
+
+
 class PersonsProject(models.Model):
+
+    row_no = models.PositiveIntegerField(primary_key=True)
     person = models.ForeignKey(User,on_delete=models.CASCADE)
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
     
@@ -72,5 +79,14 @@ class PersonsProject(models.Model):
         ('rejected', 'Rejected'),
     ]
     # Define the categorical column using CharField with choices
-    approval = models.CharField(choices= approval_choices, default='pending')
-    
+    approval = models.CharField(choices= approval_choices, default='pending',max_length=20)
+
+class ProjectDomain(models.Model):
+
+    row_no = models.PositiveIntegerField(primary_key=True)
+    project = models.ForeignKey(Project,on_delete=models.CASCADE)
+    domain = models.ForeignKey(Domain,on_delete=models.CASCADE)
+
+    # TODO: add constraints to check that combination of project and domain are unique
+    class Meta:
+        unique_together = ['project','domain']
