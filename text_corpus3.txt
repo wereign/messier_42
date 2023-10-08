@@ -1,0 +1,2892 @@
+=======
+Astropy
+=======
+
+.. container::
+
+    |Actions Status| |CircleCI Status| |Coverage Status| |PyPI Status| |Documentation Status| |Pre-Commit| |isort Status| |black| |Zenodo|
+
+The Astropy Project (http://astropy.org/) is a community effort to develop a
+single core package for Astronomy in Python and foster interoperability between
+Python astronomy packages. This repository contains the core package which is
+intended to contain much of the core functionality and some common tools needed
+for performing astronomy and astrophysics with Python.
+
+Releases are `registered on PyPI <https://pypi.org/project/astropy>`_,
+and development is occurring at the
+`project's GitHub page <http://github.com/astropy/astropy>`_.
+
+For installation instructions, see the `online documentation <https://docs.astropy.org/>`_
+or  `docs/install.rst <docs/install.rst>`_ in this source distribution.
+
+Contributing Code, Documentation, or Feedback
+---------------------------------------------
+
+The Astropy Project is made both by and for its users, so we welcome and
+encourage contributions of many kinds. Our goal is to keep this a positive,
+inclusive, successful, and growing community by abiding with the
+`Astropy Community Code of Conduct <http://www.astropy.org/about.html#codeofconduct>`_.
+
+More detailed information on contributing to the project or submitting feedback
+can be found on the `contributions <http://www.astropy.org/contribute.html>`_
+page. A `summary of contribution guidelines <CONTRIBUTING.md>`_ can also be
+used as a quick reference when you are ready to start writing or validating
+code for submission.
+
+Getting started with GitHub Codespaces
+--------------------------------------
+
+Codespaces is a cloud development environment supported by GitHub. None of the Astropy build machinery depends on it, but it is a convenient way to quickly get started doing development on Astropy.
+
+To get started, create a codespace for this repository by clicking this 👇
+
+|Codespaces|
+
+A codespace will open in a web-based version of Visual Studio Code. The `dev container <.devcontainer/devcontainer.json>`_ is fully configured with software needed for this project. Feel free to take a look at `GitHub Codespaces Support <https://support.github.com/features/codespaces>`_ page for help.
+
+**Note**: Dev containers is an open spec which is supported by `GitHub Codespaces <https://github.com/codespaces>`_ and `other tools <https://containers.dev/supporting>`_.
+
+Supporting the Project
+----------------------
+
+|NumFOCUS| |Donate|
+
+The Astropy Project is sponsored by NumFOCUS, a 501(c)(3) nonprofit in the
+United States. You can donate to the project by using the link above, and this
+donation will support our mission to promote sustainable, high-level code base
+for the astronomy community, open code development, educational materials, and
+reproducible scientific research.
+
+License
+-------
+
+Astropy is licensed under a 3-clause BSD style license - see the
+`LICENSE.rst <LICENSE.rst>`_ file.
+
+.. |Actions Status| image:: https://github.com/astropy/astropy/workflows/CI/badge.svg
+    :target: https://github.com/astropy/astropy/actions
+    :alt: Astropy's GitHub Actions CI Status
+
+.. |CircleCI Status| image::  https://img.shields.io/circleci/build/github/astropy/astropy/main?logo=circleci&label=CircleCI
+    :target: https://circleci.com/gh/astropy/astropy
+    :alt: Astropy's CircleCI Status
+
+.. |Coverage Status| image:: https://codecov.io/gh/astropy/astropy/branch/main/graph/badge.svg
+    :target: https://codecov.io/gh/astropy/astropy
+    :alt: Astropy's Coverage Status
+
+.. |PyPI Status| image:: https://img.shields.io/pypi/v/astropy.svg
+    :target: https://pypi.org/project/astropy
+    :alt: Astropy's PyPI Status
+
+.. |Zenodo| image:: https://zenodo.org/badge/DOI/10.5281/zenodo.4670728.svg
+   :target: https://doi.org/10.5281/zenodo.4670728
+   :alt: Zenodo DOI
+
+.. |Documentation Status| image:: https://img.shields.io/readthedocs/astropy/latest.svg?logo=read%20the%20docs&logoColor=white&label=Docs&version=stable
+    :target: https://docs.astropy.org/en/stable/?badge=stable
+    :alt: Documentation Status
+
+.. |Pre-Commit| image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
+   :target: https://github.com/pre-commit/pre-commit
+   :alt: pre-commit
+
+.. |isort Status| image:: https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336
+    :target: https://pycqa.github.io/isort/
+    :alt: isort Status
+
+.. |black| image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
+
+.. |NumFOCUS| image:: https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&colorA=E1523D&colorB=007D8A
+    :target: http://numfocus.org
+    :alt: Powered by NumFOCUS
+
+.. |Donate| image:: https://img.shields.io/badge/Donate-to%20Astropy-brightgreen.svg
+    :target: https://numfocus.salsalabs.org/donate-to-astropy/index.html
+
+.. |Codespaces| image:: https://github.com/codespaces/badge.svg
+    :target: https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=2081289
+    :alt: Open in GitHub Codespaces
+
+
+If you locally cloned this repo before 7 Apr 2021
+-------------------------------------------------
+
+The primary branch for this repo has been transitioned from ``master`` to
+``main``.  If you have a local clone of this repository and want to keep your
+local branch in sync with this repo, you'll need to do the following in your
+local clone from your terminal::
+
+   git fetch --all --prune
+   # you can stop here if you don't use your local "master"/"main" branch
+   git branch -m master main
+   git branch -u origin/main main
+
+If you are using a GUI to manage your repos you'll have to find the equivalent
+commands as it's different for different programs. Alternatively, you can just
+delete your local clone and re-clone!
+
+====================================
+ Welcome to the Skyfield Repository
+====================================
+
+Skyfield is a pure-Python astronomy package
+that is compatible with both Python 2 and 3
+and makes it easy to generate high precision research-grade
+positions for planets and Earth satellites.
+
+.. code-block:: python
+
+   from skyfield.api import load
+
+   planets = load('de421.bsp')
+   earth, mars = planets['earth'], planets['mars']
+
+   ts = load.timescale()
+   t = ts.now()
+   position = earth.at(t).observe(mars)
+   ra, dec, distance = position.radec()
+
+   print(ra)
+   print(dec)
+   print(distance)
+
+The result:
+
+::
+
+   10h 47m 56.24s
+   +09deg 03' 23.1"
+   2.33251 au
+
+Skyfield’s only binary dependency is NumPy.
+Once that is available, Skyfield can usually be installed with::
+
+    pip install skyfield
+
+Here are the essential project links:
+
+* `Home page and documentation
+  <http://rhodesmill.org/skyfield>`_.
+
+* `Installing Skyfield
+  <http://rhodesmill.org/skyfield/installation.html>`_.
+
+* `Contributing to Skyfield
+  <https://github.com/skyfielders/python-skyfield/blob/master/Contrib.rst>`_.
+
+* `Skyfield package <https://pypi.python.org/pypi/skyfield>`_
+  on the Python Package Index.
+
+* `Issue tracker
+  <https://github.com/brandon-rhodes/python-skyfield/issues>`_
+  on GitHub.
+# Astronomy Picture of the Day (APOD) microservice
+
+A microservice written in Python with the [Flask micro framework](http://flask.pocoo.org).
+
+## NOTES: 
+### Code re-organization has occurred [2020-05-04]!
+Code was reorganized to make it work more easily on AWS's Elastic Beanstalk service.
+
+The changes over previous version were :
+1. Moved main code out of the APOD folder and into the top level directory as Elastic Beanstalk had a hard time finding the initial python file unless it was in the top-level folder. 
+2. Changed service.py to application.py
+3. Changed references to app in application.py to application
+
+You can find a frozen version of the previous code in the branch called <a href="https://github.com/nasa/apod-api/tree/prevCodeOrganization">"prevCodeOrganization"</a>
+
+#### API Reliability
+A very large number of people use the instance of this API that NASA has set up. If you need a extremely reliable version of this API, you likely want to stand up your own version of the API. You can do that with this code! All information that this API returns is actually just grabbed from the <a href='https://apod.nasa.gov/apod/astropix.html'>Astronomy Photo of the Day Website</a> (APOD).
+
+#### Content Related Issues
+No one watching this repository has anything to do with Astronomy Photo of the Day website, so we're unable to deal with issues directly related to their content. Please contact them directly.
+
+
+# Table of contents
+1. [Getting Started](#getting_started)
+    1. [Standard environment](#standard_env)
+    2. [`virtualenv` environment](#virtualenv)
+    3. [`conda` environment](#conda)
+2. [Docs](#docs)
+3. [APOD parser](#TheAPODParser)
+4. [Deployed](#Deployed)
+5. [Feedback](#feedback)
+6. [Author](#author)
+
+&nbsp;
+## Getting started <a name="getting_started"></a>
+
+### Standard environment <a name="standard_env"></a>
+
+1. Clone the repo
+```bash
+git clone https://github.com/nasa/apod-api
+```
+2. `cd` into the new directory
+```bash
+cd apod-api
+```
+3. Install dependencies into the project's `lib`
+```bash
+pip install -r requirements.txt -t lib
+```
+4. Add `lib` to your PYTHONPATH and run the server
+```bash
+PYTHONPATH=./lib python application.py
+```
+&nbsp;
+### `virtualenv` environment <a name="virtualenv"></a>
+
+1. Clone the repo
+```bash
+git clone https://github.com/nasa/apod-api
+```
+2. `cd` into the new directory
+```bash
+cd apod-api
+```
+3. Create a new virtual environment `env` in the directory
+```bash
+python -m venv venv
+```
+4. Activate the new environment
+```bash
+.\venv\Scripts\Activate
+```
+5. Install dependencies in new environment
+```bash
+pip install -r requirements.txt
+```
+6. Run the server locally
+```bash
+python application.py
+```
+&nbsp;
+### `conda` environment <a name="conda"></a>
+
+1. Clone the repo
+```bash
+git clone https://github.com/nasa/apod-api
+```
+2. `cd` into the new directory
+```bash
+cd apod-api
+```
+3. Create a new virtual environment `env` in the directory
+```bash
+conda create --prefix ./env
+```
+4. Activate the new environment
+```bash
+conda activate ./env
+```
+5. Install dependencies in new environment
+```bash
+pip install -r requirements.txt
+```
+6. Run the server locally
+```bash
+python application.py
+```
+
+### Run it in Docker
+
+1. Clone the repo
+```bash
+git clone https://github.com/nasa/apod-api.git
+```
+2. `cd` into the new directory
+```bash
+cd apod-api
+```
+3. Build the image
+```bash
+docker build . -t apod-api
+```
+4. Run the image
+```bash
+docker run -p 5000:5000 apod-api
+```
+
+&nbsp;
+## Docs <a name="docs"></a>
+
+### Endpoint: `/<version>/apod`
+
+There is only one endpoint in this service which takes 2 optional fields
+as parameters to a http GET request. A JSON dictionary is returned nominally.
+
+#### URL Search Params | query string parameters
+
+- `api_key` | demo: `DEMO_KEY` | https://api.nasa.gov/#signUp
+- `date` A string in YYYY-MM-DD format indicating the date of the APOD image (example: 2014-11-03).  Defaults to today's date.  Must be after 1995-06-16, the first day an APOD picture was posted.  There are no images for tomorrow available through this API.
+- `concept_tags` A boolean `True|False` indicating whether concept tags should be returned with the rest of the response.  The concept tags are not necessarily included in the explanation, but rather derived from common search tags that are associated with the description text.  (Better than just pure text search.)  Defaults to False.
+- `hd` A boolean `True|False` parameter indicating whether or not high-resolution images should be returned. This is present for legacy purposes, it is always ignored by the service and high-resolution urls are returned regardless.
+- `count` A positive integer, no greater than 100. If this is specified then `count` randomly chosen images will be returned in a JSON array. Cannot be used in conjunction with `date` or `start_date` and `end_date`.
+- `start_date` A string in YYYY-MM-DD format indicating the start of a date range. All images in the range from `start_date` to `end_date` will be returned in a JSON array. Cannot be used with `date`.
+- `end_date` A string in YYYY-MM-DD format indicating that end of a date range. If `start_date` is specified without an `end_date` then `end_date` defaults to the current date.
+- `thumbs` A boolean parameter `True|False` inidcating whether the API should return a thumbnail image URL for video files. If set to `True`, the API returns URL of video thumbnail. If an APOD is not a video, this parameter is ignored.
+
+**Returned fields**
+
+- `resource` A dictionary describing the `image_set` or `planet` that the response illustrates, completely determined by the structured endpoint.
+- `concept_tags` A boolean reflection of the supplied option.  Included in response because of default values.
+- `title` The title of the image.
+- `date` Date of image. Included in response because of default values.
+- `url` The URL of the APOD image or video of the day.
+- `hdurl` The URL for any high-resolution image for that day. Returned regardless of 'hd' param setting but will be omitted in the response IF it does not exist originally at APOD.
+- `media_type` The type of media (data) returned. May either be 'image' or 'video' depending on content.
+- `explanation` The supplied text explanation of the image.
+- `concepts` The most relevant concepts within the text explanation.  Only supplied if `concept_tags` is set to True.
+- `thumbnail_url` The URL of thumbnail of the video. 
+- `copyright` The name of the copyright holder.
+- `service_version` The service version used.
+
+**Example**
+
+```bash
+localhost:5000/v1/apod?api_key=DEMO_KEY&date=2014-10-01&concept_tags=True
+```
+<details><summary>See Return Object</summary>
+<p>
+
+```jsoniq
+{
+    resource: {
+        image_set: "apod"
+    },
+    concept_tags: "True",
+    date: "2013-10-01",
+    title: "Filaments of the Vela Supernova Remnant",
+    url: "http://apod.nasa.gov/apod/image/1310/velafilaments_jadescope_960.jpg",
+    explanation: "The explosion is over but the consequences continue. About eleven
+    thousand years ago a star in the constellation of Vela could be seen to explode,
+    creating a strange point of light briefly visible to humans living near the
+    beginning of recorded history. The outer layers of the star crashed into the
+    interstellar medium, driving a shock wave that is still visible today. A roughly
+    spherical, expanding shock wave is visible in X-rays. The above image captures some
+    of that filamentary and gigantic shock in visible light. As gas flies away from the
+    detonated star, it decays and reacts with the interstellar medium, producing light
+    in many different colors and energy bands. Remaining at the center of the Vela
+    Supernova Remnant is a pulsar, a star as dense as nuclear matter that rotates
+    completely around more than ten times in a single second.",
+    concepts: {
+        0: "Astronomy",
+        1: "Star",
+        2: "Sun",
+        3: "Milky Way",
+        4: "Hubble Space Telescope",
+        5: "Earth",
+        6: "Nebula",
+        7: "Interstellar medium"
+    }
+}
+```
+
+</p>
+</details>
+
+
+```bash
+https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=5
+```
+
+<details><summary>See Return Object</summary>
+<p>
+
+
+```jsoniq
+[
+  {
+    "copyright": "Panther Observatory",
+    "date": "2006-04-15",
+    "explanation": "In this stunning cosmic vista, galaxy M81 is on the left surrounded by blue spiral arms.  On the right marked by massive gas and dust clouds, is M82.  These two mammoth galaxies have been locked in gravitational combat for the past billion years.   The gravity from each galaxy dramatically affects the other during each hundred million-year pass.  Last go-round, M82's gravity likely raised density waves rippling around M81, resulting in the richness of M81's spiral arms.  But M81 left M82 with violent star forming regions and colliding gas clouds so energetic the galaxy glows in X-rays.  In a few billion years only one galaxy will remain.",
+    "hdurl": "https://apod.nasa.gov/apod/image/0604/M81_M82_schedler_c80.jpg",
+    "media_type": "image",
+    "service_version": "v1",
+    "title": "Galaxy Wars: M81 versus M82",
+    "url": "https://apod.nasa.gov/apod/image/0604/M81_M82_schedler_c25.jpg"
+  },
+  {
+    "date": "2013-07-22",
+    "explanation": "You are here.  Everyone you've ever known is here. Every human who has ever lived -- is here. Pictured above is the Earth-Moon system as captured by the Cassini mission orbiting Saturn in the outer Solar System. Earth is the brighter and bluer of the two spots near the center, while the Moon is visible to its lower right. Images of Earth from Saturn were taken on Friday. Quickly released unprocessed images were released Saturday showing several streaks that are not stars but rather cosmic rays that struck the digital camera while it was taking the image.  The above processed image was released earlier today.  At nearly the same time, many humans on Earth were snapping their own pictures of Saturn.   Note: Today's APOD has been updated.",
+    "hdurl": "https://apod.nasa.gov/apod/image/1307/earthmoon2_cassini_946.jpg",
+    "media_type": "image",
+    "service_version": "v1",
+    "title": "Earth and Moon from Saturn",
+    "url": "https://apod.nasa.gov/apod/image/1307/earthmoon2_cassini_960.jpg"
+  },
+  {
+    "copyright": "Joe Orman",
+    "date": "2000-04-06",
+    "explanation": "Rising before the Sun on February 2nd, astrophotographer Joe Orman anticipated this apparition of the bright morning star Venus near a lovely crescent Moon above a neighbor's house in suburban Phoenix, Arizona, USA. Fortunately, the alignment of bright planets and the Moon is one of the most inspiring sights in the night sky and one that is often easy to enjoy and share without any special equipment. Take tonight, for example. Those blessed with clear skies can simply step outside near sunset and view a young crescent Moon very near three bright planets in the west Jupiter, Mars, and Saturn. Jupiter will be the unmistakable brightest star near the Moon with a reddish Mars just to Jupiter's north and pale yellow Saturn directly above. Of course, these sky shows create an evocative picture but the planets and Moon just appear to be near each other -- they are actually only approximately lined up and lie in widely separated orbits. Unfortunately, next month's highly publicized alignment of planets on May 5th will be lost from view in the Sun's glare but such planetary alignments occur repeatedly and pose no danger to planet Earth.",
+    "hdurl": "https://apod.nasa.gov/apod/image/0004/vm_orman_big.jpg",
+    "media_type": "image",
+    "service_version": "v1",
+    "title": "Venus, Moon, and Neighbors",
+    "url": "https://apod.nasa.gov/apod/image/0004/vm_orman.jpg"
+  },
+  {
+    "date": "2014-07-12",
+    "explanation": "A new star, likely the brightest supernova in recorded human history, lit up planet Earth's sky in the year 1006 AD. The expanding debris cloud from the stellar explosion, found in the southerly constellation of Lupus, still puts on a cosmic light show across the electromagnetic spectrum. In fact, this composite view includes X-ray data in blue from the Chandra Observatory, optical data in yellowish hues, and radio image data in red. Now known as the SN 1006 supernova remnant, the debris cloud appears to be about 60 light-years across and is understood to represent the remains of a white dwarf star. Part of a binary star system, the compact white dwarf gradually captured material from its companion star. The buildup in mass finally triggered a thermonuclear explosion that destroyed the dwarf star. Because the distance to the supernova remnant is about 7,000 light-years, that explosion actually happened 7,000 years before the light reached Earth in 1006. Shockwaves in the remnant accelerate particles to extreme energies and are thought to be a source of the mysterious cosmic rays.",
+    "hdurl": "https://apod.nasa.gov/apod/image/1407/sn1006c.jpg",
+    "media_type": "image",
+    "service_version": "v1",
+    "title": "SN 1006 Supernova Remnant",
+    "url": "https://apod.nasa.gov/apod/image/1407/sn1006c_c800.jpg"
+  },
+  {
+    "date": "1997-01-21",
+    "explanation": "In Jules Verne's science fiction classic A Journey to the Center of the Earth, Professor Hardwigg and his fellow explorers encounter many strange and exciting wonders. What wonders lie at the center of our Galaxy? Astronomers now know of some of the bizarre objects which exist there, like vast dust clouds,\r bright young stars, swirling rings of gas, and possibly even a large black hole. Much of the Galactic center region is shielded from our view in visible light by the intervening dust and gas. But it can be explored using other forms of electromagnetic radiation, like radio, infrared, X-rays, and gamma rays. This beautiful high resolution image of the Galactic center region in infrared light was made by the SPIRIT III telescope onboard the Midcourse Space Experiment. The center itself appears as a bright spot near the middle of the roughly 1x3 degree field of view, the plane of the Galaxy is vertical, and the north galactic pole is towards the right. The picture is in false color - starlight appears blue while dust is greenish grey, tending to red in the cooler areas.",
+    "hdurl": "https://apod.nasa.gov/apod/image/9701/galcen_msx_big.gif",
+    "media_type": "image",
+    "service_version": "v1",
+    "title": "Journey to the Center of the Galaxy \r\nCredit:",
+    "url": "https://apod.nasa.gov/apod/image/9701/galcen_msx.jpg"
+  }
+]
+```
+
+</p>
+</details>
+
+
+
+```bash
+https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2017-07-08&end_date=2017-07-10
+```
+
+<details><summary>See Return Object</summary>
+<p>
+
+```jsoniq
+[
+  {
+    "copyright": "T. Rector",
+    "date": "2017-07-08",
+    "explanation": "Similar in size to large, bright spiral galaxies in our neighborhood, IC 342 is a mere 10 million light-years distant in the long-necked, northern constellation Camelopardalis. A sprawling island universe, IC 342 would otherwise be a prominent galaxy in our night sky, but it is hidden from clear view and only glimpsed through the veil of stars, gas and dust clouds along the plane of our own Milky Way galaxy. Even though IC 342's light is dimmed by intervening cosmic clouds, this sharp telescopic image traces the galaxy's own obscuring dust, blue star clusters, and glowing pink star forming regions along spiral arms that wind far from the galaxy's core. IC 342 may have undergone a recent burst of star formation activity and is close enough to have gravitationally influenced the evolution of the local group of galaxies and the Milky Way.",
+    "hdurl": "https://apod.nasa.gov/apod/image/1707/ic342_rector2048.jpg",
+    "media_type": "image",
+    "service_version": "v1",
+    "title": "Hidden Galaxy IC 342",
+    "url": "https://apod.nasa.gov/apod/image/1707/ic342_rector1024s.jpg"
+  },
+  {
+    "date": "2017-07-09",
+    "explanation": "Can you find your favorite country or city?  Surprisingly, on this world-wide nightscape, city lights make this task quite possible.  Human-made lights highlight particularly developed or populated areas of the Earth's surface, including the seaboards of Europe, the eastern United States, and Japan.  Many large cities are located near rivers or oceans so that they can exchange goods cheaply by boat.  Particularly dark areas include the central parts of South America, Africa, Asia, and Australia.  The featured composite was created from images that were collected during cloud-free periods in April and October 2012 by the Suomi-NPP satellite, from a polar orbit about 824 kilometers above the surface, using its Visible Infrared Imaging Radiometer Suite (VIIRS).",
+    "hdurl": "https://apod.nasa.gov/apod/image/1707/EarthAtNight_SuomiNPP_3600.jpg",
+    "media_type": "image",
+    "service_version": "v1",
+    "title": "Earth at Night",
+    "url": "https://apod.nasa.gov/apod/image/1707/EarthAtNight_SuomiNPP_1080.jpg"
+  },
+  {
+    "date": "2017-07-10",
+    "explanation": "What's happening around the center of this spiral galaxy? Seen in total, NGC 1512 appears to be a barred spiral galaxy -- a type of spiral that has a straight bar of stars across its center.  This bar crosses an outer ring, though, a ring not seen as it surrounds the pictured region. Featured in this Hubble Space Telescope image is an inner ring -- one that itself surrounds the nucleus of the spiral.  The two rings are connected not only by a bar of bright stars but by dark lanes of dust. Inside of this inner ring, dust continues to spiral right into the very center -- possibly the location of a large black hole. The rings are bright with newly formed stars which may have been triggered by the collision of NGC 1512 with its galactic neighbor, NGC 1510.",
+    "hdurl": "https://apod.nasa.gov/apod/image/1707/NGC1512_Schmidt_1342.jpg",
+    "media_type": "image",
+    "service_version": "v1",
+    "title": "Spiral Galaxy NGC 1512: The Nuclear Ring",
+    "url": "https://apod.nasa.gov/apod/image/1707/NGC1512_Schmidt_960.jpg"
+  }
+]
+```
+
+
+</p>
+</details>
+
+#### Copyright
+If you are re-displaying imagery, you may want to check for the presence of the copyright. Anything without a copyright returned field is generally NASA and in the public domain. Please see the <a href=https://apod.nasa.gov/apod/lib/about_apod.html>"About image permissions"</a> section on the main Astronomy Photo of the Day site for more information.
+
+## The APOD Parser<a name="TheAPODParser"></a>
+
+<i>The APOD Parser is not part of the API itself. </i> Rather is intended to be used for accessing the APOD API quickly with Python without writing much additional code yourself. It is found in the apod_parser folder.
+
+### Usage
+
+1. First import the `apod_object_parser.py` file.
+
+2. Now use the `get_data` function and pass your API key as the only argument. You can get the API key <a href="https://api.nasa.gov/#signUp">here</a>
+
+```python
+response = apod_object_parser.get_data(<your_api_key>)
+```
+
+3. Now you can use the following functions:
+
+-> `apod_object_parser.get_date(response)`
+
+-> `apod_object_parser.get_explaination(response)`
+
+-> `apod_object_parser.get_hdurl(response)`
+
+-> `apod_object_parser.get_media_type(response)`
+
+-> `apod_object_parser.get_service_version(response)`
+
+-> `apod_object_parser.get_title(response)`
+
+-> `apod_object_parser.get_url(response)`
+
+**for full docs and more functions visit the readme of  the apod parser by clicking <a href="apod_parser/apod_parser_readme.md">here</a>**
+
+## Deployed <a name="Deployed"></a>
+The deployed version of this API is based on the `eb` branch. The version that was deployed before that is in the `eb_previous` branch. The `master` branch is used as development as that's where most of the pull requests will come into anyways.
+
+This API is deployed on AWS using elastic beanstalk due to large number of people who use the service. However, if you're planning on using it just yourself, it is small enough to be stood up on a single micro EC2 or any other small size cloud compute machine.
+
+## Feedback <a name="feedback"></a>
+
+Star this repo if you found it useful. Use the github issue tracker to give
+feedback on this repo.
+
+## Author <a name="author"></a>
+- Brian Thomas (based on code by Dan Hammer) 
+- Justin Gosses (made changes to allow this repository to run more easily on AWS Elastic Beanstalk after heroku instance was shut-down)
+- Please checkout the <a href="https://github.com/nasa/apod-api/graphs/contributors">contributers</a> to this repository on the righthand side of this page. 
+
+## Contributing
+We do accept pull requests from the public. Please note that we can be slow to respond. Please be patient. 
+
+Also, **the people with rights on this repository are not people who can debug problems with the APOD website itself**. If you would like to contribute, right now we could use some attention to the tests. 
+
+## Links
+
+- [YouTube Embedded Players and Player Parameters](https://developers.google.com/youtube/player_parameters)
+.. -*- mode: rst -*-
+
+=======================================
+AstroML: Machine Learning for Astronomy
+=======================================
+
+.. image:: https://img.shields.io/badge/arXiv-1411.5039-orange.svg?style=flat
+        :target: https://arxiv.org/abs/1411.5039
+        :alt: Reference proceedings
+.. image:: https://github.com/astroML/astroML/workflows/CI/badge.svg
+        :target: https://github.com/astroML/astroML/actions?query=workflow%3ACI
+        :alt: Github Actions CI Status
+.. image:: https://img.shields.io/pypi/v/astroML.svg?style=flat
+        :target: https://pypi.python.org/pypi/astroML
+        :alt: Latest PyPI version
+.. image:: https://img.shields.io/pypi/dm/astroML.svg?style=flat
+        :target: https://pypi.python.org/pypi/astroML
+        :alt: PyPI download stat
+.. image:: https://img.shields.io/badge/license-BSD-blue.svg?style=flat
+        :target: https://github.com/astroml/astroml/blob/main/LICENSE.rst
+        :alt: License badge
+
+AstroML is a Python module for machine learning and data mining
+built on numpy, scipy, scikit-learn, and matplotlib,
+and distributed under the BSD license.
+It contains a growing library of statistical and machine learning
+routines for analyzing astronomical data in python, loaders for several open
+astronomical datasets, and a large suite of examples of analyzing and
+visualizing astronomical datasets.
+
+This project was started in 2012 by Jake VanderPlas to accompany the book
+*Statistics, Data Mining, and Machine Learning in Astronomy* by
+Zeljko Ivezic, Andrew Connolly, Jacob VanderPlas, and Alex Gray.
+
+
+Important Links
+===============
+- HTML documentation: https://www.astroML.org
+- Core source-code repository: https://github.com/astroML/astroML
+- Figure source-code repository: https://github.com/astroML/astroML-figures
+- Issue Tracker: https://github.com/astroML/astroML/issues
+- Mailing List: https://groups.google.com/forum/#!forum/astroml-general
+
+
+Installation
+============
+
+**Before installation, make sure your system meets the prerequisites
+listed in Dependencies, listed below.**
+
+Core
+----
+To install the core ``astroML`` package in your home directory, use::
+
+  pip install astroML
+
+A conda package for astroML is also available either on the conda-forge or
+on the astropy conda channels::
+
+  conda install -c astropy astroML
+
+The core package is pure python, so installation should be straightforward
+on most systems.  To install from source, use::
+
+  python setup.py install
+
+You can specify an arbitrary directory for installation using::
+
+  python setup.py install --prefix='/some/path'
+
+To install system-wide on Linux/Unix systems::
+
+  python setup.py build
+  sudo python setup.py install
+
+
+Dependencies
+============
+There are two levels of dependencies in astroML.  *Core* dependencies are
+required for the core ``astroML`` package. *Optional* dependencies are required
+to run some (but not all) of the example scripts.  Individual example scripts
+will list their optional dependencies at the top of the file.
+
+Core Dependencies
+-----------------
+The core ``astroML`` package requires the following (some of the
+functionality might work with older versions):
+
+- Python_ version 3.6+
+- Numpy_ >= 1.13
+- Scipy_ >= 0.19
+- Scikit-learn_ >= 0.18
+- Matplotlib_ >= 3.0
+- AstroPy_ >= 3.0
+
+Optional Dependencies
+---------------------
+Several of the example scripts require specialized or upgraded packages.
+These requirements are listed at the top of the particular scripts
+
+- HEALPy_ provides an interface to
+  the HEALPix pixelization scheme, as well as fast spherical harmonic
+  transforms.
+
+Development
+===========
+This package is designed to be a repository for well-written astronomy code,
+and submissions of new routines are encouraged.  After installing the
+version-control system Git_, you can check out
+the latest sources from GitHub_ using::
+
+  git clone git://github.com/astroML/astroML.git
+
+or if you have write privileges::
+
+  git clone git@github.com:astroML/astroML.git
+
+Contribution
+------------
+We strongly encourage contributions of useful astronomy-related code:
+for `astroML` to be a relevant tool for the python/astronomy community,
+it will need to grow with the field of research.  There are a few
+guidelines for contribution:
+
+General
+~~~~~~~
+Any contribution should be done through the github pull request system (for
+more information, see the
+`help page <https://help.github.com/articles/using-pull-requests>`_
+Code submitted to ``astroML`` should conform to a BSD-style license,
+and follow the `PEP8 style guide <http://www.python.org/dev/peps/pep-0008/>`_.
+
+Documentation and Examples
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+All submitted code should be documented following the
+`Numpy Documentation Guide`_.  This is a unified documentation style used
+by many packages in the scipy universe.
+
+In addition, it is highly recommended to create example scripts that show the
+usefulness of the method on an astronomical dataset (preferably making use
+of the loaders in ``astroML.datasets``).  These example scripts are in the
+``examples`` subdirectory of the main source repository.
+
+.. _Numpy Documentation Guide: https://numpydoc.readthedocs.io/en/latest/format.html
+
+Authors
+=======
+
+Package Author
+--------------
+* Jake Vanderplas https://github.com/jakevdp
+  http://jakevdp.github.com
+
+Maintainer
+----------
+* Brigitta Sipocz https://github.com/bsipocz
+
+Contributors
+------------
+
+* Alex Conley
+* Andreas Kopecky
+* Andrew Connolly
+* Asif Imran
+* Benjamin Alan Weaver
+* Brigitta Sipőcz
+* Chris Desira
+* Daniel Andreasen
+* Dino Bektešević
+* Edward Betts
+* Hans Moritz Günther
+* Hugo van Kemenade
+* Jake Vanderplas
+* Jeremy Blow
+* Jonathan Sick
+* Joris van Vugt
+* Juanjo Bazán
+* Julian Taylor
+* Lars Buitinck
+* Michael Radigan
+* Morgan Fouesneau
+* Nicholas Hunt-Walker
+* Ole Streicher
+* Pey Lian Lim
+* Rodrigo Nemmen
+* Ross Fadely
+* Vlad Skripniuk
+* Zlatan Vasović
+* Engineero
+* stonebig
+
+.. _Python: https://www.python.org
+.. _Numpy: https://www.numpy.org
+.. _Scipy: https://www.scipy.org
+.. _Scikit-learn: https://scikit-learn.org
+.. _Matplotlib: https://matplotlib.org
+.. _AstroPy: http://www.astropy.org/
+.. _HEALPy: https://github.com/healpy/healpy
+.. _Git: https://git-scm.com/
+.. _GitHub: https://www.github.com
+==============
+PyEphem README
+==============
+
+.. _ephem: http://pypi.python.org/pypi/ephem/
+.. _pyephem: http://pypi.python.org/pypi/pyephem/
+.. _XEphem: http://www.clearskyinstitute.com/xephem/
+.. _Quick Reference: http://rhodesmill.org/pyephem/quick
+.. _Tutorial: http://rhodesmill.org/pyephem/tutorial
+.. _PyEphem web site: http://rhodesmill.org/pyephem/
+
+PyEphem provides an ``ephem`` Python package
+for performing high-precision astronomy computations.
+The underlying numeric routines are coded in C
+and are the same ones that drive the popular `XEphem`_ astronomy application,
+whose author, Elwood Charles Downey,
+generously gave permission for their use in PyEphem.
+The name *ephem* is short for the word *ephemeris*,
+which is the traditional term for a table
+giving the position of a planet, asteroid, or comet for a series of dates.
+
+The `PyEphem web site`_ offers documentation
+and also links to the project bug tracker, user support forum,
+and source code repository.
+If you have a C compiler and the
+`pip Python installer tool <https://pip.pypa.io/en/latest/installing.html>`_
+on your system,
+then installing PyEphem should be as easy as::
+
+  pip install ephem
+
+There are also Windows installers in the downloads section below.
+
+The design of PyEphem emphasizes convenience and ease of use.
+Both celestial bodies and the observer's location on Earth
+are represented by Python objects,
+while dates and angles automatically print themselves
+in standard astronomical formats::
+
+ >>> import ephem
+ >>> mars = ephem.Mars()
+ >>> mars.compute('2008/1/1')
+ >>> print(mars.ra)
+ 5:59:27.35
+ >>> print(mars.dec)
+ 26:56:27.4
+
+The documentation includes both a `Quick Reference`_ and a `Tutorial`_,
+which are included in text files within the module itself
+as well as being available on the `PyEphem web site`_.
+
+The features provided by PyEphem include:
+
+* Find where a planet, comet, or asteroid is in the sky.
+
+  * High-precision orbital routines are provdied
+    for the Moon, Sun, planets, and the major planet moons.
+  * The user can supply the orbital elements of a comet, asteroid,
+    or Earth-orbiting satellite, and have its location computed.
+  * The positions of 94 bright stars come built-in,
+    and the user can create further fixed objects as needed
+    for their calculations.
+
+* Determine where in the sky an object appears for a particular observer.
+
+  * The user can supply the longitude, latitude, and altitude
+    of the location from which they will be observing.
+  * For convenience, a small database of longitudes and latitudes
+    for 122 world cities is included.
+  * For specified weather conditions (temperature and pressure),
+    PyEphem will compensate for atmospheric refraction
+    by adjusting the positions of bodies near the horizon.
+
+* Compute when a body will rise, transit overhead, and set
+  from a particular location.
+
+* Parse and use orbital data in either the traditional XEphem file format,
+  or the standard TLE format used for tracking Earth-orbiting satellites.
+
+* Determine the dates of the equinoxes and solstices.
+
+* Compute the dates of the various phases of the Moon.
+
+* Convert from the Greenwich Time (more precisely, Ephemeris Time)
+  which PyEphem uses to the local time of the user.
+
+* Convert positions between the equatorial, ecliptic, and galactic
+  coordinate systems.
+
+* Determine on which page of the Uranometria or the Millennium Star Atlas
+  a particular star should appear.
+
+* Return the Julian Date corresponding to any calendar date.
+
+Developers
+----------
+
+If you are interested in learning about how PyEphem works or in
+exploring its source code, check out this repository from GitHub.  It is
+hosted at:
+
+https://github.com/brandon-rhodes/pyephem
+
+If you lack expertise with version control, you can instead simply
+download a static copy of the most recent source code using this link:
+
+https://github.com/brandon-rhodes/pyephem/archive/master.zip
+
+To run its source code in place, create a `virtual environment
+<http://docs.python-guide.org/en/latest/dev/virtualenvs/>`_, activate
+it, change directory to the root of the PyEphem source code, and run::
+
+    python setup.py build_ext -i
+
+You can then run the PyEphem test suite to see whether all of its
+features are working correctly on your operating system and platform::
+
+    python -m unittest discover ephem
+
+PyEphem’s documentation is organized as a standard `Sphinx
+<http://www.sphinx-doc.org/en/master/>`_ document project.  You can
+build the documentation either with the Sphinx command line::
+
+    sphinx-build -b html pyephem/ephem/doc/ ./my_documentation_directory/
+
+— or, more typically, by invoking one of the targets in the
+documentation’s Makefile::
+
+    make -C ephem/doc html
+.. image:: https://anaconda.org/conda-forge/gammapy/badges/license.svg
+    :target: https://github.com/gammapy/gammapy/blob/master/LICENSE.rst
+    :alt: Licence
+
+.. image:: http://img.shields.io/badge/powered%20by-AstroPy-orange.svg?style=flat
+    :target: http://www.astropy.org/
+
+.. image:: http://img.shields.io/pypi/v/gammapy.svg?text=version
+    :target: https://pypi.org/project/gammapy/
+    :alt: Latest release
+
+.. image:: https://anaconda.org/conda-forge/gammapy/badges/version.svg
+    :target: https://anaconda.org/conda-forge/gammapy
+
+.. image:: https://anaconda.org/conda-forge/gammapy/badges/downloads.svg
+    :target: https://anaconda.org/conda-forge/gammapy
+
+.. image:: https://img.shields.io/badge/launch-binder-579aca.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFkAAABZCAMAAABi1XidAAAB8lBMVEX///9XmsrmZYH1olJXmsr1olJXmsrmZYH1olJXmsr1olJXmsrmZYH1olL1olJXmsr1olJXmsrmZYH1olL1olJXmsrmZYH1olJXmsr1olL1olJXmsrmZYH1olL1olJXmsrmZYH1olL1olL0nFf1olJXmsrmZYH1olJXmsq8dZb1olJXmsrmZYH1olJXmspXmspXmsr1olL1olJXmsrmZYH1olJXmsr1olL1olJXmsrmZYH1olL1olLeaIVXmsrmZYH1olL1olL1olJXmsrmZYH1olLna31Xmsr1olJXmsr1olJXmsrmZYH1olLqoVr1olJXmsr1olJXmsrmZYH1olL1olKkfaPobXvviGabgadXmsqThKuofKHmZ4Dobnr1olJXmsr1olJXmspXmsr1olJXmsrfZ4TuhWn1olL1olJXmsqBi7X1olJXmspZmslbmMhbmsdemsVfl8ZgmsNim8Jpk8F0m7R4m7F5nLB6jbh7jbiDirOEibOGnKaMhq+PnaCVg6qWg6qegKaff6WhnpKofKGtnomxeZy3noG6dZi+n3vCcpPDcpPGn3bLb4/Mb47UbIrVa4rYoGjdaIbeaIXhoWHmZYHobXvpcHjqdHXreHLroVrsfG/uhGnuh2bwj2Hxk17yl1vzmljzm1j0nlX1olL3AJXWAAAAbXRSTlMAEBAQHx8gICAuLjAwMDw9PUBAQEpQUFBXV1hgYGBkcHBwcXl8gICAgoiIkJCQlJicnJ2goKCmqK+wsLC4usDAwMjP0NDQ1NbW3Nzg4ODi5+3v8PDw8/T09PX29vb39/f5+fr7+/z8/Pz9/v7+zczCxgAABC5JREFUeAHN1ul3k0UUBvCb1CTVpmpaitAGSLSpSuKCLWpbTKNJFGlcSMAFF63iUmRccNG6gLbuxkXU66JAUef/9LSpmXnyLr3T5AO/rzl5zj137p136BISy44fKJXuGN/d19PUfYeO67Znqtf2KH33Id1psXoFdW30sPZ1sMvs2D060AHqws4FHeJojLZqnw53cmfvg+XR8mC0OEjuxrXEkX5ydeVJLVIlV0e10PXk5k7dYeHu7Cj1j+49uKg7uLU61tGLw1lq27ugQYlclHC4bgv7VQ+TAyj5Zc/UjsPvs1sd5cWryWObtvWT2EPa4rtnWW3JkpjggEpbOsPr7F7EyNewtpBIslA7p43HCsnwooXTEc3UmPmCNn5lrqTJxy6nRmcavGZVt/3Da2pD5NHvsOHJCrdc1G2r3DITpU7yic7w/7Rxnjc0kt5GC4djiv2Sz3Fb2iEZg41/ddsFDoyuYrIkmFehz0HR2thPgQqMyQYb2OtB0WxsZ3BeG3+wpRb1vzl2UYBog8FfGhttFKjtAclnZYrRo9ryG9uG/FZQU4AEg8ZE9LjGMzTmqKXPLnlWVnIlQQTvxJf8ip7VgjZjyVPrjw1te5otM7RmP7xm+sK2Gv9I8Gi++BRbEkR9EBw8zRUcKxwp73xkaLiqQb+kGduJTNHG72zcW9LoJgqQxpP3/Tj//c3yB0tqzaml05/+orHLksVO+95kX7/7qgJvnjlrfr2Ggsyx0eoy9uPzN5SPd86aXggOsEKW2Prz7du3VID3/tzs/sSRs2w7ovVHKtjrX2pd7ZMlTxAYfBAL9jiDwfLkq55Tm7ifhMlTGPyCAs7RFRhn47JnlcB9RM5T97ASuZXIcVNuUDIndpDbdsfrqsOppeXl5Y+XVKdjFCTh+zGaVuj0d9zy05PPK3QzBamxdwtTCrzyg/2Rvf2EstUjordGwa/kx9mSJLr8mLLtCW8HHGJc2R5hS219IiF6PnTusOqcMl57gm0Z8kanKMAQg0qSyuZfn7zItsbGyO9QlnxY0eCuD1XL2ys/MsrQhltE7Ug0uFOzufJFE2PxBo/YAx8XPPdDwWN0MrDRYIZF0mSMKCNHgaIVFoBbNoLJ7tEQDKxGF0kcLQimojCZopv0OkNOyWCCg9XMVAi7ARJzQdM2QUh0gmBozjc3Skg6dSBRqDGYSUOu66Zg+I2fNZs/M3/f/Grl/XnyF1Gw3VKCez0PN5IUfFLqvgUN4C0qNqYs5YhPL+aVZYDE4IpUk57oSFnJm4FyCqqOE0jhY2SMyLFoo56zyo6becOS5UVDdj7Vih0zp+tcMhwRpBeLyqtIjlJKAIZSbI8SGSF3k0pA3mR5tHuwPFoa7N7reoq2bqCsAk1HqCu5uvI1n6JuRXI+S1Mco54YmYTwcn6Aeic+kssXi8XpXC4V3t7/ADuTNKaQJdScAAAAAElFTkSuQmCC
+   :target: mybinder.org
+
+.. image:: https://anaconda.org/conda-forge/gammapy/badges/platforms.svg
+    :target: https://anaconda.org/conda-forge/gammapy
+
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.4701488.svg?style=flat
+    :target: https://doi.org/10.5281/zenodo.4701488
+
+.. image:: https://archive.softwareheritage.org/badge/origin/https://github.com/gammapy/gammapy/
+    :target: https://archive.softwareheritage.org/browse/origin/?origin_url=https://github.com/gammapy/gammapy
+
+Gammapy
+=======
+
+A Python Package for Gamma-ray Astronomy.
+
+Gammapy is an open-source Python package for gamma-ray astronomy built on Numpy, Scipy and Astropy. It is used as core
+library for the Science Analysis tools of the Cherenkov Telescope Array (CTA), recommended by the H.E.S.S.
+collaboration to be used for Science publications, and is already widely used in the analysis of existing gamma-ray
+instruments, such as MAGIC, VERITAS and HAWC.
+
+* Webpage: https://gammapy.org
+* Documentation: https://docs.gammapy.org/
+* Code: https://github.com/gammapy/gammapy
+
+Contributing Code, Documentation, or Feedback
++++++++++++++++++++++++++++++++++++++++++++++
+The Gammapy Project is made both by and for its users, so we welcome and encourage contributions of many kinds. Our
+goal is to keep this a positive, inclusive, successful, and growing community by abiding with the
+`Gammapy Community Code of Conduct <https://gammapy.org/CoC.html>`_.
+
+The Gammapy project uses a mechanism known as a `Developer Certificate of Origin` (DCO). The DCO is a binding statement
+that asserts that you are the creator of your contribution, and that you wish to allow Gammapy to use your work to cite
+you as contributor. More detailed information on contributing to the project or submitting feedback can be found on the
+`Contributing page <https://github.com/gammapy/gammapy/blob/master/CONTRIBUTING.md>`_.
+
+Licence
++++++++
+Gammapy is licensed under a 3-clause BSD style license - see the
+`LICENSE.rst <https://github.com/gammapy/gammapy/blob/master/LICENSE.rst>`_ file.
+
+Supporting the project
+++++++++++++++++++++++
+The Gammapy project is not sponsored and the development is made by the staff of `the institutes supporting the project
+<https://gammapy.org/team.html#support>`_ over their research time. Any contribution is then encouraged, as punctual or
+regular contributor.
+
+Status shields
+++++++++++++++
+
+(mostly useful for developers)
+
+* .. image:: https://app.codacy.com/project/badge/Grade/9c32a21a915d4a28823f3b44a99a2810
+    :target: https://www.codacy.com/gh/gammapy/gammapy/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gammapy/gammapy&amp;utm_campaign=Badge_Grade
+    :alt: Codacy
+
+* .. image:: https://github.com/gammapy/gammapy/workflows/CI/badge.svg?style=flat
+    :target: https://github.com/gammapy/gammapy/actions
+    :alt: GitHub actions CI
+
+* .. image:: https://codecov.io/gh/gammapy/gammapy/branch/master/graph/badge.svg?style=flat
+    :target: https://codecov.io/gh/gammapy/gammapy
+
+Note if you cloned this repository before Oct 7th 2022
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The  primary branch was renamed `main`. See the following instructions:
+https://github.com/gammapy/gammapy/wiki/Changing-master-branch-to-main
+
+Image Registration Methods for Astronomy
+========================================
+(intended for *extended emission*, not stellar images!)
+
+**Documentation:** http://image-registration.rtfd.org
+
+### Usage
+
+- `pip install image_registration` or 
+- `git clone https://github.com/keflavich/image_registration`
+
+```python
+from image_registration import chi2_shift
+from image_registration.fft_tools import shift
+import image_registration
+
+#Generate Sample Image
+image = image_registration.tests.make_extended(100)
+offset_image = image_registration.tests.make_offset_extended(image, 4.76666, -12.33333333333333333333333, noise=0.1)
+
+#Get Fused Image
+xoff, yoff, exoff, eyoff = chi2_shift(image, offset_image)
+corrected_image2 = shift.shiftnd(offset_image, (-yoff, -xoff))
+```
+
+### Requirements:
+Install the following version of the packages to replicate this repository:
+- FITS_tools==0.2
+- matplotlib==3.4.2
+- astropy==4.2.1
+  
+For the following packages latest version should work:
+- scipy
+- pytest
+
+To replicate in conda you can use environment.yml given in repository
+
+### Acknowledgments:
+- Borrows heavily from
+http://www.mathworks.com/matlabcentral/fileexchange/18401-efficient-subpixel-image-registration-by-cross-correlation/content/html/efficient_subpixel_registration.html
+
+- Replicates much of the functionality of 
+http://www.astro.ucla.edu/~mperrin/IDL/sources/subreg.pro
+
+Also implements 
+http://solarmuri.ssl.berkeley.edu/~welsch/public/software/cross_cor_taylor.pro
+
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Zenodo_logo.jpg" alt="Zenodo" width="200" style="float:left">
+<img src="https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco/v1397185883/572a01e5ceae5baf6fd82328b810a566.png" alt="Bitdeli badge" width="200" style="float:left">
+
+# Awesome Astronomy [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
+
+An [awesome list](https://github.com/sindresorhus/awesome) of resources for professional astronomers.  *Everyone* is invited to [contribute](CONTRIBUTING.md) by pull request.
+
+## Contents
+
+- [Blogs](#blogs)
+- [Codes](#codes)
+- [Conferences](#conferences)
+- [Datasets](#datsets)
+- [Social Media](#social-media)
+- [Projects](#projects)
+
+***
+
+### Blogs
+
+- [AAS Policy Blog](http://aas.org/policy/policy-blog) Josh Shiode
+- [AstroBetter](http://www.astrobetter.com/) Kelle Cruz and many other contributors
+- [Astrobiased](http://www.astrobiased.com/) Eli Bressert
+- [astrobites](https://astrobites.org/) The astro-ph reader's digest
+- [AstroWright](http://sites.psu.edu/astrowright/) Jason Wright
+- [dan foreman-mackey](http://dan.iel.fm/posts/) Daniel Foreman-Mackey
+- [Hogg Blog](http://hoggresearch.blogspot.com/) David W. Hogg
+- [gully](http://gully.github.io/blog/) Michael Gully-Santiago
+- [Pythonic Perambulations](https://jakevdp.github.io/) Jacob T. VanderPlas
+- [SarahAskew](http://sarahaskew.net/) Sarah Kendrew
+
+### Codes
+*All codes are in `Python` unless otherwise noted*
+
+#### General purpose
+
+- [Andy Casey's ads](https://github.com/andycasey/ads) - Python tool for ADS
+- [Astronomy Source Code Library](http://ascl.net/) - A free online registry for source codes of interest to astronomers and astrophysicists.
+- [Continuum Anaconda](https://www.continuum.io/why-anaconda) - Install, update, manage Python environments.
+- [AplPy](http://aplpy.github.io) - a Python module for astronomical imaging data.
+- [Astropy](http://astropy.org) - Core package for Astronomy in Python.
+- [Astropy tutorials](https://github.com/astropy/astropy-tutorials) - Tutorials for the Astropy Project
+- [AstroML](http://www.astroml.org) - Companion textbook *Statistics, Data Mining, and Machine Learning in Astronomy*.
+- [celerite](https://github.com/dfm/celerite) - Scalable 1D Gaussian Processes in C++, Python, and Julia
+- [Emcee](http://dan.iel.fm/emcee/current/) - Seriously kick-ass MCMC.
+- [ExoData](https://github.com/ryanvarley/ExoData) - [Open Exoplanet Catalogue](https://github.com/OpenExoplanetCatalogue) interface and exploratory analysis tool.
+- [fast-histogram](https://github.com/astrofrog/fast-histogram) - Fast 1D and 2D histogram functions in Python
+- `IDL` [NASA'S IDL Astronomy User's Library](http://idlastro.gsfc.nasa.gov/) - large libary with plenty of very useful code for astronomers
+- [The LSST Stack](https://confluence.lsstcorp.org/display/LSWUG/Using+the+LSST+Stack) Conda-installable codes for working with LSST simulation data and some existing data.
+Detrending & Analysis
+- [sncosmo](https://github.com/sncosmo/sncosmo) - Python library for supernova cosmology
+- [Pandas Profiling](https://github.com/pandas-profiling/pandas-profiling) - Create HTML profiling reports from pandas DataFrame objects.
+- [Python Data Science Handbook](https://github.com/jakevdp/PythonDataScienceHandbook) - Python Data Science Handbook: full text in Jupyter Notebooks
+- [PyCBC](https://github.com/gwastro/pycbc) - For GW Astronomy
+
+
+#### Astrometry / Kinematic / RV / Galactic / Gaia
+
+- [Banyan Sigma](https://github.com/jgagneastro/banyan_sigma) - A Bayesian classifier to identify members of the 27 nearest young associations within 150 pc of the Sun
+- [Barycorrpy](https://github.com/shbhuk/barycorrpy) - Calculate the barycentric velocity correction for a star with an accuracy well below 1 cm/s.
+- [gaia on tap](https://github.com/andycasey/gaia-on-tap) - Python utilities and examples for accessing Gaia data using the Table Access Protocol (TAP)
+- [gaia tools](https://github.com/jobovy/gaia_tools) - Tools for working with the ESAGaia data and related data sets
+- [gala](https://github.com/adrn/gala) - Galactic and gravitational dynamics in Python
+- [GalPy](https://github.com/jobovy/galpy) - Galactic Dynamics in python.
+- [Luminosity Calibration Tutorial](https://github.com/agabrown/luminosity-calibration-tutorial) - Tutorial on use of parallaxes in luminosity calibration; accompanies a Gaia DR2 paper on the proper use of parallaxes (Luri et al. in prep)
+- [vaex](https://github.com/maartenbreddels/vaex) - Lazy Out-of-Core DataFrames for Python, visualize and explore big tabular data at a billion rows per second.
+- [ExoSOFT](https://github.com/kylemede/ExoSOFT) - Solves for the orbital elements of any single companion, provided observed radial velocity and/or astrometry.
+- [pyaneti](https://github.com/oscaribv/pyaneti) - A multi-planet Radial Velocity and Transit fit software
+- [PyGaia](https://github.com/agabrown/PyGaia) - Python toolkit for basic Gaia data simulation, manipulation, and analysis
+- [radvel](http://github.com/California-Planet-Search/radvel) - General Toolkit for Modeling Radial Velocity Data
+
+
+#### Spectroscopy
+
+ - [Apogee](https://github.com/jobovy/apogee) - Tools for dealing with APOGEE data
+ - [Chimera](https://github.com/ExoCTK/chimera) - Atmospheric retrieval code from Mike Line
+ - [The](https://github.com/mkness/TheCannon) [Cannon](https://github.com/annayqho/TheCannon) - a data-driven method for determining stellar parameters and abundances from stellar spectra.
+ - [The Payne](https://github.com/pacargile/ThePayne) - Artificial Neural-Net compression and fitting of synthetic spectral grids.
+ - [PSOAP](https://github.com/iancze/PSOAP) - Tools for data-driven spectra models with Gaussian processes. Pronounced "soap."
+ - [pydis](https://github.com/jradavenport/pydis) - A simple longslit spectroscopy pipeline in Python
+ - [pyspeckit](https://github.com/pyspeckit/pyspeckit) - Python Spectroscopic Toolkit
+ - [sick](https://github.com/andycasey/sick) - the spectroscopic inference crank
+ - [Specmatch Empirical](https://github.com/samuelyeewl/specmatch-emp) - tool to extract the fundamental properties (effective temperature, radius, and metallicity) by comparing a target star's spectrum to a library of spectra from stars with known properties.
+ - [Specmatch Synthetic](https://github.com/petigura/specmatch-syn) - tool to extract the fundamental properties (effective temperature, radius, and metallicity) by comparing a target star's spectrum to synthetic spectra.
+ - [SpectResC](https://github.com/cylammarco/SpectResC) - A simple spectral resampling Python tool written in C (based on [SpectRes](https://github.com/ACCarnall/SpectRes))
+ - [specviz](https://github.com/spacetelescope/specviz) - An interactive astronomical 1D spectra analysis tool.
+ - [specutils](https://github.com/astropy/specutils) - Astropy affiliated package for 1D spectral operations.
+ - [splat](https://github.com/aburgasser/splat) - SpeX Prism Spectral Analysis Toolkit
+ - [Starfish](https://github.com/iancze/Starfish) - Tools for Flexible Spectroscopic Inference
+ - [TelFit](https://github.com/kgullikson88/Telluric-Fitter) - Telluric fitting made easy
+ - [wobble](https://github.com/megbedell/wobble) - Precise data-driven RV fitting, now with tellurics!
+
+#### Photometry and source detection
+
+ - [image registration](https://github.com/keflavich/image_registration) - Image Registration for Astronomy.
+ - `julia`[Celeste.jl](https://github.com/jeff-regier/Celeste.jl) - Scalable inference for a generative model of astronomical images.
+ - [Dust Maps](https://github.com/gregreen/dustmaps) - A uniform interface for a number of 2D and 3D maps of interstellar dust reddening/extinction.
+ - [fsps](https://github.com/cconroy20/fsps) - Flexible Stellar Population Synthesis
+ - [LA Cosmicx](https://github.com/cmccully/lacosmicx) - A fast implementation of the LA Cosmic algorithm
+ - `R` [ProFound](https://github.com/asgr/ProFound) - Source finding and extraction
+ - [PSFutils](https://github.com/spacetelescope/psfutils) - Open-source Python package to provide convenience tools for working with point-spread functions.
+ - [Synphot](https://github.com/spacetelescope/synphot_refactor) - Synthetic photometry using Astropy
+ - [NOAO Source Catalog](https://github.com/dnidever/noaosourcecatalog) - Source catalog of all NOAO imaging data
+ - [sep](https://github.com/kbarbary/sep) - Python and C library for source extraction and photometry
+ - [sewpy](https://github.com/megalut/sewpy) - Source Extractor Wrapper for Python
+
+#### Visualization
+
+- [astro_animations](https://github.com/zingale/astro_animations) - Various animations used for teaching introductory astronomy concepts
+- [gifsicle](https://github.com/kohler/gifsicle) - Create, manipulate, and optimize GIF images and animations
+- [holoviews](https://github.com/ioam/holoviews) - Stop plotting your data - annotate your data and let it visualize itself.
+- [aplpy](https://github.com/aplpy/aplpy) - Astronomical Plotting Library in Python
+- [spectrify](https://github.com/labjg/spectrify) - Reverse engineer astronomical spectra into pretty rainbow pictures with Python
+- [ztv](https://github.com/henryroe/ztv) - An astronomical image viewer written in Python.
+
+#### Kepler/K2/TESS
+
+*Detrending*
+
+- [PyKE](http://github.com/KeplerGO/PyKE) - Kepler, K2 & TESS Data Analysis Tools
+- [everest](http://github.com/rodluger/everest) - De-trending of K2 Light curves
+- [k2sc](http://github.com/OxES/k2sc) - K2 systematics correction using Gaussian processes
+- [nutella](http://github.com/benmontet/nutella) - Great (point) spreads for beautiful Kepler/K2 inference
+- [skope](http://github.com/nksaunders/skope) - Synthetic K2 Objects for PLD Experimentation
+- [k2phot](http://github.com/petigura/k2phot) - public k2phot code from Erik Petigura
+- [K2-CPM](http://github.com/jvc2688/K2-CPM) - K2 Causal Pixel Model
+- [halophot](https://github.com/hvidy/halophot/) - K2 Halo Photometry for very bright stars
+- [cave](http://github.com/nksaunders/cave) - Crowded Aperture Variability Extraction
+- [celerite-asteroseis](http://github.com/skgrunblatt/celerite-asteroseis) - Transit fitting and basic time-domain asteroseismology using celerite and ktransit
+- [k2photometry](http://github.com/vincentvaneylen/k2photometry) - Read, reduce and detrend K2 photometry and search for transiting planets
+- [keplersmear](http://github.com/benjaminpope/keplersmear) - Make light curves from Kepler and K2 collateral data
+- [OxKeplerSC](http://github.com/OxES/OxKeplerSC) - Kepler jump and systematics correction using Variational Bayes and shrinkage priors.
+- [K2Pipeline](http://github.com/FGCUStellarResearch/K2Pipeline) - Data reduction and detrending pipeline for K2 data in Matlab
+- [PySysRem](http://github.com/stephtdouglas/PySysRem) - A Python implementation of the SysRem algorithm from Tamuz, Mazeh, and Zucker (2004)
+- [kali](https://github.com/AstroVPK/kali) - A library to model a time series as a Continuous-time ARMA process
+
+*Full Frame Images*
+
+- [f3](http://github.com/benmontet/f3) - Full Frame Fotometry from the Kepler Full Frame Images
+- [FFIorBUST](http://github.com/jradavenport/FFIorBUST) - Make really bad light curves from the Kepler Full Frame Images
+- [kepcal](http://github.com/dfm/kepcal) - Self calibration using the Kepler FFIs
+
+*Data Access*
+
+- [kplr](http://github.com/dfm/kplr) - Tools for working with Kepler data using Python
+- [kepFGS](http://github.com/christinahedges/kepFGS) - Tools to use the Kepler and K2 Fine Guidance Sensor data.
+- [k2plr](http://github.com/rodluger/k2plr) - Fork of dfm/kplr with added k2 functionality
+
+
+*Metadata*
+
+- [kadenza](http://github.com/KeplerGO/kadenza) - Converts raw cadence target data from the Kepler space telescope into FITS files.
+- [k2-quality-control](http://github.com/KeplerGO/k2-quality-control) - Automated quality control of Kepler/K2 data products.
+- [SuperstampFITS](http://github.com/amcody/SuperstampFITS) - Create individual FITS files of K2 superstamp regions.
+- [keputils](http://github.com/timothydmorton/keputils) - Basic module for interaction with KOI and Kepler-stellar tables.
+
+*Planet Search / Characterization*
+
+
+- [PyTransit](http://github.com/hpparvi/PyTransit) - Fast and easy transit light curve modeling using Python and Fortran.
+- [batman](http://github.com/lkreidberg/batman) - Fast transit light curves models in Python.
+- [ktransit](http://github.com/mrtommyb/ktransit) - A simple exoplanet transit modeling tool in python
+- [planetplanet](http://github.com/rodluger/planetplanet) - A general photodynamical code for exoplanet light curves
+- [ketu](http://github.com/dfm/ketu) - I can haz planetz?
+- [ttvfast-python](http://github.com/mindriot101/ttvfast-python) - Python interface to the TTVFast library
+- `fortran` [TTVFast](https://github.com/kdeck/TTVFast) - TTVFast efficiently calculates transit times for n-planet systems and the corresponding radial velocities.
+- [terra](http://github.com/petigura/terra) - Transit Detection Code
+- [pysyzygy](http://github.com/rodluger/pysyzygy) - A fast and general planet transit (syzygy) code written in C and in Python
+- [k2ps](http://github.com/hpparvi/k2ps) - K2 Planet Search
+- [lcps](http://github.com/matiscke/lcps) - A tool for pre-selecting light curves with possible transit signatures
+- [PyOrbit](https://github.com/LucaMalavolta/PyORBIT) - PyORBIT: a code for exoplanet orbital parameters and stellar activity.
+- [exocartographer](https://github.com/bfarr/exocartographer) - A forward-modeling tool for constraining surface maps orbital parameters of exoplanets from time-resolved photometry
+- [Spiderman](https://github.com/tomlouden/SPIDERMAN) - A fast code to simulate secondary transits and phase curves
+- [ExoCTK](https://github.com/ExoCTK/ExoCTK) - The Exoplanet Characterization Tool Kit, an open-source, modular data analysis package focused primarily on atmospheric characterization of exoplanets
+
+
+*Population Statistics*
+
+
+- [VESPA](http://github.com/timothydmorton/VESPA) - Calculating false positive probabilities for transit signals
+- [kepler-robovetter](http://github.com/nasa/kepler-robovetter) - The Kepler Prime Robovetter
+- [koi-fpp](http://github.com/timothydmorton/koi-fpp) - False positive probabilities for all KOIs
+- [KeplerPORTS](http://github.com/nasa/KeplerPORTS) - The Kepler Pipeline
+- [Kepler-FLTI](http://github.com/nasa/Kepler-FLTI) - Kepler Prime Flux-Level Transit Injection
+
+
+*Positional*
+
+
+- [K2fov](http://github.com/KeplerGO/K2fov) - Check whether targets are in the field of view of NASA's K2 space telescope
+- [K2ephem](http://github.com/KeplerGO/K2ephem) - Check whether a Solar System body is (or was) observable by NASA's K2 mission.
+- [k2-pix](http://github.com/stephtdouglas/k2-pix) - Overlay a sky survey image on a K2 target pixel stamp
+- [k2flix](http://github.com/barentsen/k2flix) - Create quicklook movies from the pixel data observed by Kepler/K2/TESS
+- [k2mosaic](http://github.com/barentsen/k2mosaic) - Mosaic Target Pixel Files (TPFs) obtained by NASA's Kepler/K2 missions into images and movies.
+- [tvguide](http://github.com/tessgi/tvguide) - A tool for determining whether stars and galaxies are observable by TESS.
+
+
+*Science / Astrophysics*
+
+
+- [isochrones](http://github.com/timothydmorton/isochrones) - Pythonic stellar model grid access; easy MCMC fitting of stellar properties
+- [ldtk](http://github.com/hpparvi/ldtk) - Python toolkit for calculating stellar limb darkening profiles
+- [isoclassify](http://github.com/danxhuber/isoclassify) - Perform stellar classifications using isochrone grids
+- [appaloosa](http://github.com/jradavenport/appaloosa) - Python-based flare finding code for Kepler light curves.
+- [pymacula](http://github.com/timothydmorton/pymacula) - Python wrapper for Macula analytic starspot code
+- [MulensModel](http://github.com/rpoleski/MulensModel) - Microlensing Modelling package
+- [animate_spots](http://github.com/stephtdouglas/animate_spots) - Make frames for animated gifs/movies showing a rotating spotted star
+- [spotrod](https://github.com/bencebeky/spotrod) - A semi-analytic model for transits of spotted stars -- C implementation and Python API
+- [decatur](http://github.com/jadilia/decatur) - Tidal Synchronization of Kepler Eclipsing Binaries
+
+
+*Other*
+
+- [PandExo](http://github.com/natashabatalha/PandExo) - A Community Tool for Transiting Exoplanet Science with the JWST & HST
+- [kepler_orrery](http://github.com/ethankruse/kepler_orrery) - Make a Kepler orrery gif or movie of all the Kepler multi-planet systems
+- [koi3278](http://github.com/ethankruse/koi3278) - Analysis files for the KOI-3278 system
+- [trappist1](http://github.com/rodluger/trappist1) - TRAPPIST-1 photometry with K2
+
+#### Instrumentation
+
+- [binaryoffset](https://github.com/snfactory/binaryoffset) - Detecting and Correcting the Binary Offset Effect in CCDs
+- [INDI](https://github.com/indilib/indi) - INDI is a standard for astronomical instrumentation control
+- [astroberry-server](https://github.com/rkaczorek/astroberry-server) - astronomy desktop system for Raspberry Pi 3 based on INDI
+
+### Conferences
+
+- [International Astronomy Meetings](http://www.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/en/meetings/) - List of all planned Astronomy Conferences
+- [Python in Astronomy](http://openastronomy.org/pyastro/) - A conference series focusing on the use, development, and community surrounding Python packages for all types of Astronomy.
+
+### Datasets
+
+- [AAVSO APASS](http://www.aavso.org/apass) Optical all sky data.
+- [AAVSO Data](https://www.aavso.org/data-download) - Long time baseline data for variable stars.
+- [AllWISE](http://irsa.ipac.caltech.edu/Missions/wise.html) - Wide Field Infrared Survey Explorer.
+- [AstroML](http://www.astroml.org/user_guide/datasets.html) - Tools and data sets, including SDSS, LINEAR light curves, LIGO data.
+- [Gaia Archive](https://www.cosmos.esa.int/web/gaia/data) - Gaia data for one billion stars.
+- [GALEX SQL query](http://galex.stsci.edu/casjobs/) - Galex data.
+- [Hipparcos](http://heasarc.gsfc.nasa.gov/W3Browse/all/hipparcos.html) - Subset of HYG.
+- [HYG](http://www.astronexus.com/hyg)- Database containing all stars in Hipparcos, Yale Bright Star, and Gliese catalogs (almost 120,000 stars, 14 MB).
+- [LINEAR](http://www.astro.washington.edu/users/ivezic/linear/PaperIII/PLV.html) - 7194 LINEAR variables with light curve classification.
+- [MAST](https://archive.stsci.edu/) - The Mikulski Archive for Space Telescopes houses astronomical data sets in the optical, ultraviolet, and near-infrared parts of the spectrum
+- [NOAO Data Lab](https://datalab.noao.edu/) -  Offers large datasets now being generated by instruments on NOAO and other wide-field telescopes.
+- [OGLE](http://ogledb.astrouw.edu.pl/~ogle/CVS/) - Variable stars towards OGLE-III fields in the Magellanic Clouds and Galactic bulge
+- [Open Astronomy Catalogs](https://astrocats.space) - Databases of supernovae, tidal disruptions, kilonovae, and high-velocity stars.
+- [Open Exoplanet Catalogue](https://github.com/OpenExoplanetCatalogue) - An open source database of all discovered extrasolar planets.
+- [Research-based Science Education for Undergraduates](http://rbseu.uaa.alaska.edu/index.html) - Curated datasets on 7 projects designed for undergraduates.
+- [SDSS SQL query](http://skyserver.sdss.org/dr12/en/proj/advanced/hr/sql.aspx) - Sloan Digital Sky Survey.
+- [SDSS for Teachers](http://cas.sdss.org/dr5/en/proj/teachers/) - Includes basic projects and advanced projects
+- [Supernova Cosmology Project](http://supernova.lbl.gov/union/) The Union2.1 SN Ia compilation of 883 SNe from 19 datasets.
+
+### Future Datasets
+
+- [ARCHES](http://www.arches-fp7.eu/index.php/tools-data/accessing-data) - XMM-Newton cross match database
+- [Pan-Starrs](http://ipp.ifa.hawaii.edu/index.php) - Public data release coming soon.
+
+### Social Media
+
+- [Astronomer's Facebook Group](https://www.facebook.com/groups/123898011017097/) - Closed group for professional astromers, with over 8000 members.
+- [Astronomers on Twitter](http://truesciphi.org/ast.html) - List of Astronomers on Twitter with over 1000 followers.
+- [Astromers.io](http://astronomers.io/) - "A nice place for astronomers, and those working in the sphere of professional astronomy"
+- [Community.lsst.org](https://community.lsst.org) - A community forum for using/developing LSST software and doing science with LSST.
+- [Python Users in Astronomy](https://www.facebook.com/groups/astropython/) - A closed group for python users in astronomy.
+
+### Projects
+- [Project Panoptes](https://projectpanoptes.org/) - A citizen science project that aims to make it easy for anyone to build a low cost, robotic telescope that can be used to detect transiting exoplanets.
+
+****
+
+Licensed [Creative Commons Zero](LICENSE).
+
+[This exists because they told me to do it.](https://twitter.com/exoplaneteer/status/600452917779308544)
+Pyorbital
+=========
+
+[![Build status](https://github.com/pytroll/pyorbital/workflows/CI/badge.svg?branch=main)](https://github.com/pytroll/pyorbital/workflows/CI/badge.svg?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/pytroll/pyorbital/badge.svg?branch=main)](https://coveralls.io/github/pytroll/pyorbital?branch=main)
+[![PyPI version](https://badge.fury.io/py/pyorbital.svg)](https://badge.fury.io/py/pyorbital)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6078954.svg)](https://doi.org/10.5281/zenodo.6078954)
+
+
+
+This is the Pyorbital, a Python package for computing orbital parameters from TLE
+files, and making various astronomical computations.
+
+It is part of the Pytroll project: http://pytroll.org
+
+<h1 align="center">
+  <br>
+  <img
+    src="https://github.com/skyportal/skyportal/raw/main/static/images/skyportal_logo.png"
+    alt="SkyPortal Logo"
+    width="100px"
+  />
+  <br>
+  SkyPortal
+  <br>
+</h1>
+
+<h2 align="center">
+An Astronomical Data Platform
+</h2>
+
+<p>
+  <span style="font-size: 180%;">
+  Please see the <a href="https://skyportal.io">project homepage</a> for more information.
+  </span>
+</p>
+
+<p>
+  <a style="border-width:0" href="https://doi.org/10.21105/joss.01247">
+    <img src="http://joss.theoj.org/papers/10.21105/joss.01247/status.svg" alt="DOI badge" >
+  </a>
+</p>
+
+## Installation & Usage
+
+Please refer to the <a href="https://skyportal.io/docs">project documentation</a>.
+======
+Carsus
+======
+
+Carsus is a package to manage atomic datasets. It can read data from a variety of 
+sources and output them to file formats readable by radiative transfer codes.
+
+.. image:: https://codecov.io/gh/tardis-sn/carsus/branch/master/graph/badge.svg?token=wzEPZc4JYv
+    :target: https://codecov.io/gh/tardis-sn/carsus
+    :alt: Coverage
+
+.. image:: http://img.shields.io/badge/powered%20by-AstroPy-orange.svg?style=flat
+    :target: http://www.astropy.org
+    :alt: Powered by Astropy Badge
+
+.. image:: https://github.com/tardis-sn/carsus/actions/workflows/docs-build.yml/badge.svg
+    :target: https://tardis-sn.github.io/carsus
+    :alt: docs
+
+.. image:: https://github.com/tardis-sn/carsus/actions/workflows/tests.yml/badge.svg
+    :target: https://github.com/tardis-sn/carsus/actions/workflows/tests.yml
+    :alt: tests
+
+.. image:: https://badges.gitter.im/Join%20Chat.svg
+    :target: https://gitter.im/tardis-sn/carsus
+    :alt: Join Chat
+
+*******
+License
+*******
+
+This project is Copyright (c) TARDIS Collaboration and licensed under
+the terms of the BSD 3-Clause license. This package is based upon
+the `Astropy package template <https://github.com/astropy/package-template>`_
+which is licensed under the BSD 3-clause license. See the licenses folder for
+more information.
+### About
+
+This is the source for the openastronomy.github.io website.
+
+### Building
+
+To build the site locally, you will need [jekyll](https://jekyllrb.com) to be installed.
+Clone this repository locally, then inside it, type:
+
+```shell
+gem install bundler
+bundler install
+```
+Depending on your Ruby setup this may require superuser privileges to install to the default location, so you may want to instead use:
+
+```shell
+
+gem install -i vendor/bundle bundler
+bundle config --local path 'vendor/bundle'
+bundle install
+
+```
+
+to install the dependencies locally at `vendor/bundle`.
+
+You can then build the website with:
+
+```shell
+bundle exec jekyll build
+```
+
+To view the site locally, you will then need to run:
+
+```shell
+bundle exec jekyll serve
+```
+
+this will track the changes and rebuild automatically. However, it won't reflect changes on `_config.yaml` 
+
+
+### Building using a Jekyll container
+
+```bash
+mkdir -p ../vendor/bundle # so it's available for other projects
+export JEKYLL_VERSION=3.8
+# only needs to run it once to download the dependencies
+docker run --rm -e BUNDLE_APP_CONFIG="/srv/vendor/bundle" -e BUNDLE_HOME="/srv/vendor/bundle" -e BUNDLE_PATH="/srv/vendor/bundle" --volume="$PWD:/srv/jekyll" --volume="$PWD/../vendor:/srv/vendor" -it jekyll/jekyll:$JEKYLL_VERSION  bundle install
+# build
+docker run --rm -e BUNDLE_APP_CONFIG="/srv/vendor/bundle" -e BUNDLE_HOME="/srv/vendor/bundle" -e BUNDLE_PATH="/srv/vendor/bundle" --volume="$PWD:/srv/jekyll" --volume="$PWD/../vendor:/srv/vendor" -it jekyll/jekyll:$JEKYLL_VERSION  bundle exec jekyll build
+# serve from python
+python -m http.server -d _site
+```
+
+### Submodule
+
+Note that this uses a submodule to complete the build process of the site.  So you may need to do:
+
+```shell
+git submodule init
+git submodule update
+```
+in a fresh clone, or just the second line to update the submodule.
+eJyoti
+jyotish, astronomy
+
+It is based on high-precision planetary theory VSOP87 version C,
+constructed by P.Bretagnon and G.Francou [1988] at the Bureau des Longitudes, Paris
+
+See In Action:
+http://goranl.github.io
+[![Actions Status](https://github.com/ccnmtl/astro-simulations/workflows/build-and-test/badge.svg)](https://github.com/ccnmtl/astro-simulations/actions)
+
+Astronomy Simulations and Animations
+
+JavaScript/HTML ports of the Flash originals, found here: [http://astro.unl.edu/animationsLinks.html](http://astro.unl.edu/animationsLinks.html) (source files here: [https://cse.unl.edu/~astrodev/flashdev2/](https://cse.unl.edu/~astrodev/flashdev2/))
+
+* [Small-Angle Approximation Demonstrator](https://ccnmtl.github.io/astro-simulations/small-angle-demo/)
+* [Lunar Phase Simulator](https://ccnmtl.github.io/astro-simulations/lunar-phase-simulator/)
+* [Motions of the Sun Simulator](https://ccnmtl.github.io/astro-simulations/sun-motion-simulator/)
+* [Exoplanet Transit Simulator](https://ccnmtl.github.io/astro-simulations/exoplanet-transit-simulator/)
+* [Eclipsing Binary Simulator](https://ccnmtl.github.io/astro-simulations/eclipsing-binary-simulator/)
+* [Hydrogen Atom Simulator](https://ccnmtl.github.io/astro-simulations/hydrogen-atom-simulator/)
+* [Gas Retention Simulator](https://ccnmtl.github.io/astro-simulations/gas-retention-simulator/)
+* [Circumstellar Habitable Zone Simulator](https://ccnmtl.github.io/astro-simulations/circumstellar-habitable-zone-simulator/)
+
+## Development guide
+
+The original simulations are written in ActionScript 2.0. To open the .fla files, you'll need an older version of Adobe Animate than the current version (19.1). You can download a trial version of Adobe Flash Professional CS4 [here](https://helpx.adobe.com/creative-suite/kb/cs4-product-downloads.html)
+and open the .fla files with this. Also, Flash Professional CS6 can also open these files. Adobe doesn't distribute Flash Professional anymore. The only way I've found to read the source files is by opening the .swf files in [JPEXS Free Flash Decompiler
+](https://github.com/jindrapetrik/jpexs-decompiler).
+
+To get to the code, go to Window -> Actions. The bottom-left panel
+should have the code hierarchy. 
+
+Here are instructions on how to develop and make changes to these simulations. If you're using Windows, replace the forward slashes with back-slashes.
+
+* Install [node.js](https://nodejs.org/en/)
+* Clone this repository
+* Go into one of the simulations, e.g.: `cd astro-simulations/lunar-phase-simulator`
+* Run `npm install`
+* Run `npm run serve`
+* Wait for the build to complete. It takes a while.
+* Open http://localhost:8080 in your web browser.
+
+You can also use the `npm run dev` command if all you want to do is
+make a development build of a simulation without using
+[webpack-dev-server](https://github.com/webpack/webpack-dev-server). Three.js
+has an overview of this in [How to run things locally](https://threejs.org/docs/#manual/en/introduction/How-to-run-things-locally).
+Both `npm run dev` and `npm run serve` watch the `src/` directory for file
+changes.
+
+Here are some blog posts I've made about these simulations:
+* [How to animate graphical JavaScript programs](https://compiled.ctl.columbia.edu/articles/how-to-animate-graphical-javascript-programs/)
+* [How to make an analog clock (Part 1)](https://www.columbia.edu/~njn2118/journal/2018/9/27.html)
+* [How to work with Planes in three.js](https://compiled.ctl.columbia.edu/articles/planes-in-threejs/)
+* [How to make a draggable dialog box in JavaScript](https://www.columbia.edu/~njn2118/journal/2019/4/26.html)
+* [How to Simulate Gas Particles With Matter.js](https://compiled.ctl.columbia.edu/articles/how-to-simulate-gas-particles-with-matterjs/)
+
+There's also the [Conversion Guide](https://ccnmtl.github.io/astro-simulations/docs/conversion-guide.html)
+ that documents how to put together a new interactive.
+
+### Development links
+Here are some links that may be helpful for development.
+* [WebGL Setup and Installation](https://webglfundamentals.org/webgl/lessons/webgl-setup-and-installation.html)
+* [Three.js Fundamentals](https://threejsfundamentals.org/)
+* [Learning Pixi](https://github.com/kittykatattack/learningPixi)
+# Intro-to-Astro-2022
+An free introduction to astronomy research for aspiring students/researchers/enthusiasts
+
+[(Formerly: Introduction-to-Astronomy-Research)](https://github.com/howardisaacson/Introduction-to-Astronomy-Research-2018) and
+[Intro2Astro2019](https://github.com/howardisaacson/Intro-to-Astro-2019),
+[Intro2Astro2020](https://github.com/howardisaacson/Intro-to-Astro-2020) and [Intro2Astro2021](https://github.com/howardisaacson/Intro-to-Astro-2021)
+
+##Live Stream Link:
+We will be live streaming the 2022 class on Youtube on Mondays 5pm PST from Jun 13th to Aug 1st at:
+https://youtu.be/sMK_ggEVsqA
+
+##Course Website
+https://sites.google.com/view/intro-2-astro
+
+## Enrollment for the 2022 course is now open at https://sites.google.com/view/intro-2-astro
+
+### The 2021 course videos are up on Youtbue: https://www.youtube.com/channel/UC_ZmUfnIK2hGheKuikVySWQ
+
+## Announcement:
+Check this link to [Pathways to Science website ](https://pathwaystoscience.org/Undergrads.aspx) to find Summer 2021 Undergraduate Research Opportunities including SETI opportunities at [Breakthrough Listen](https://seti.berkeley.edu/Internship.html) and Berkeley SETI Research Center.
+
+## Welcome
+ Welcome to the essential collection of information that you need to begin your journey into Research Astronomy. The following tutorials, readings, projects and tips are designed to for early college students, advanced high school students, and students with nontraditional career paths to gain the skills they need in order to gain entry into a more formal research project. With exposure and eventual mastering of the skills contained in this repository, students will be better prepared to begin research project either during the semester or over the summer.
+
+## Target Audience
+This course is designed to be conducted individually or in a group setting. In this second iteration, the focus will be on interaction among students in the group, and less focused on a top down teaching structure. That said, we also hope to provide the opportunity for students to brainstorm and plan their own research projects, a skill that often requires years of practice to master. We have many brilliant graduate PhD students who serve as research mentors and tutorial leaders. No students will be turned away for lack of experience.
+
+## Our Goals
+After completion of these tutorials, students will have the skills need to quickly ramp up on new astronomy research projects, without the need to brush up on basic skills. The astronomy skills will be focused on, but not limited to exoplanet topics. Students are encouraged to use these skills to explore other realms of Astronomy. Once you have completed all of the tutorials, you will be well qualified for a paid internship in astronomy research. Many of these opportunities fall under the title: Research Experience for Undergraduates, and serve as an excellent way to become qualified for graduate studies in astronomy.
+
+## The Future of the project:
+We hope this project becomes self sustaining in such a way that others can contribute and add value to the current set of research skills presented here. If you have questions, comments or ideas, please feel free to contact us through the issue tracker on this repo. If you work in another field such as biology, chemistry, another specialty within astronomy, and are interested in replicating this project for your specific field, please email me directly.
+
+## Code of Conduct
+We strive to maintain a welcoming and supportive community for everyone regardless of race, religion, background or identity. Period. For more details, see our Code of Conduct page.
+
+# Casacore
+
+A suite of C++ libraries for radio astronomy data processing.
+
+
+# Installation
+
+## Debian / Ubuntu
+
+Casacore is now part of Debian and Ubuntu, use apt to search for the package you need:
+```bash
+$ apt-get update
+$ apt-get search casacore
+
+```
+
+## MacOS
+
+Use Homebrew with the `ska-sa` tap to install casacore:
+
+```bash
+$ brew tap ska-sa/tap
+$ brew install casacore
+```
+
+## Docker
+
+We now also publish docker images for each github branch on [quay.io](https://quay.io/repository/casacore/casacore):
+```
+$ docker pull quay.io/casacore/casacore:master
+```
+
+## Building from source
+
+### Getting the source code
+
+The casacore source code is maintained on github.
+
+You can obtain it using:
+
+```
+$ git clone https://github.com/casacore/casacore
+```
+
+### Requirements
+
+To compile casacore you need to meet the following requirements:
+
+* cmake
+* gfortran
+* g++
+* flex 
+* bison
+* blas
+* lapack
+* cfitsio (3.181 or later)
+* wcslib (4.20 or later)
+* sofa (optional, only for testing casacore measures)
+* fftw3
+* hdf5 (optional)
+* numpy (optional)
+* boost-python (optional)
+* ncurses (optional)
+
+On Debian / Ubuntu you can install these with:
+ ``` 
+$ sudo apt-get install build-essential cmake gfortran g++ libncurses5-dev \
+    libreadline-dev flex bison libblas-dev liblapacke-dev libcfitsio-dev \
+    wcslib-dev libfftw3-dev
+```
+
+and the optional libraries:
+```
+$ sudo apt-get install libhdf5-serial-dev python-numpy \
+    libboost-python-dev libpython3.4-dev libpython2.7-dev
+```
+
+On CentOS7 you can install these with:
+ ```bash 
+$ sudo yum install cmake cmake-gui gcc-gfortran gcc-c++ flex bison \
+        blas blas-devel  lapack lapack-devel cfitsio cfitsio-devel \
+        wcslib wcslib-devel ncurses ncurses-devel readline readline-devel\
+        python-devel boost boost-devel fftw fftw-devel hdf5 hdf5-devel\
+        numpy boost-python 
+```
+
+## Obtaining measures data
+
+Various parts of casacore require measures data, which requires regular
+updating. You can obtain the WSRT measures archive from the ASTRON FTP server:
+
+ftp://ftp.astron.nl/outgoing/Measures/
+
+Extract this somewhere on a permanent location on your filesystem.
+
+
+## Compilation
+
+In the casacore source folder run:
+```
+mkdir build
+cd build
+cmake ..
+make 
+make install
+```
+
+there are various flags available to cmake to enable and disable options:
+```
+$ cmake -DDATA_DIR=/usr/share/casacore/data -DUSE_OPENMP=ON \
+    -DUSE_HDF5=ON -DBUILD_PYTHON=ON -DUSE_THREADS=ON
+```
+
+The `DATA_DIR` should point to the location where you extracted the measures
+data. Special variables `%CASAROOT%` and `%CASAHOME%` can be used here, which
+can be set at run time through the `.casarc` file.
+
+You can build python3 support using `-DBUILD_PYTHON3=ON`. Note that CMake may
+have problems detecting the correct python3 libraries and headers, so probably
+you need to set them manually. For
+example:
+```
+-DPYTHON3_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.4m.so
+-DPYTHON3_INCLUDE_DIR=/usr/include/python3.4
+```
+
+To configure Python2 specific settings use:
+```
+PYTHON2_EXECUTABLE
+PYTHON2_LIBRARY
+PYTHON2_INCLUDE_DIR
+```
+
+To configure Python3 specific settings use:
+```
+PYTHON3_EXECUTABLE
+PYTHON3_LIBRARY
+PYTHON3_INCLUDE_DIR
+```
+
+If you run into problems with boost libraries, try setting `-DBoost_NO_BOOST_CMAKE=True`. This will be necessary if you have the libraries from NRAO casa in your PATH or LD_LIBRARY_PATH.
+
+
+# Documentation
+
+http://casacore.github.io/casacore
+
+
+# Problems & bugs
+
+If you have any issues compiling or using casacore, please open an issue on
+the issue tracker on github.
+
+If you have patches please open a pull request. Your contributions are more
+than welcome! But to maintain a high code quality we have written a [contribution
+manual](https://github.com/casacore/casacore/blob/master/CONTRIBUTING.md), please read
+that first.
+
+<p align="center">
+    <img width="50%" src="https://raw.githubusercontent.com/astroDimitrios/Astronomy/main/APLogo.png" alt="A&P Logo">
+</p>
+
+# Astronomy and Python Coding Activities
+
+**Website** - [astropython.com](https://www.astropython.com)
+Be sure to check out my website for details on the code, the [astroedu](https://github.com/astroDimitrios/astroedu) package, ways to get involved, and other teaching resources.
+
+My YouTube channel [astroDimitrios](https://www.youtube.com/channel/UCf8Sg-cgLNubyCM5Em8eDZg/featured) has videos of some activities and challenges as well as beginner intro videos.
+
+## Intro
+
+This directory contains code on various Astronomy topics.
+
+The goal of the coding activities are mainly to **process** and **visualise** data and **extract physical insights** from them (as described in the AAPT report below). Although by performing the activities students will inevitably also learn debugging, how to convert theory/models into code, and how to present data formally in a document or presentation.
+
+The outputs (figures etc) were designed to be a starting point for my students to put their own data and visualisations in their reports and presentations. My hope is this will promote a deeper understanding of the topic and better engage the students/encourage ownership and pride in their work.  
+
+Some are best done in pairs like the intro activities. Activities are designed to take at most an hour with some taking an hour and a half (AstPy-004 and AstPy-006 for instance).
+
+Each code has a teacher version with all outputs. These have the suffix Teacher. The student file is much smaller as it is missing the outputs and has code completition tasks for the students to complete.
+
+**Inspiration taken from:**
+
+Adam LaMee - Scientific Computing Resources [https://adamlamee.github.io/CODINGinK12/](https://adamlamee.github.io/CODINGinK12/)    
+Brown & Wilson, Ten quick tips for teaching programming, PlosCompBiol, [https://doi.org/10.1371/journal.pcbi.1006023](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1006023)  
+American Association of Physics Teachers (AAPT), [Computational Physics Report](https://www.aapt.org/Resources/upload/AAPT_UCTF_CompPhysReport_final_B.pdf)  
+PICUP, Integrating computing into physics, [https://www.compadre.org/PICUP/webdocs/About.cfm](https://www.compadre.org/PICUP/webdocs/About.cfm)  
+astronomycenter resources, [https://www.compadre.org/astronomy/index.cfm](https://www.compadre.org/astronomy/index.cfm)
+
+...and many others, see [here](https://www.astropython.com/code.html).
+
+# Table of code contents
+
+Difficulty based on a three star system. Bear in mind all of these can be adapted to make them harder or easier!
+
+AstPy Number | Difficulty | Description     | Data Files  | Comments
+------------ | ---------- | -------------   | ----------- | --------
+1 | :star: | Introductory Activities || 10 Intro Activities (in progress)
+2 | :star::star: | Intermediate introductory activities || planned
+3 | :star::star: | Stellar Fusion | Nuclear masses and binding energies (csv) |  Binding energy anim and calcs including coulomb potential well.
+4 | :star: | Solar Images | Various SDO HMI and AIA FITS | Getting and potting SDO/SOHO Images.
+5 | :star: | Solar Radiation | | Blackbody rad, Wien's law etc. Effective temperature of planets.
+6 | :star::star::star: | Sunspots | SDO HMI Fits | Calculation of solar rotation period (interactive and automatic). Sunspot identification and sunspot tracking (automatic).
+7 | :star::star::star: | Lunar Surface | LOLA DEM, LOLA Raw Topographic Data for Catalan Crater | Annotating your image of the moon from a telescope. Calculating resolution, crater heights and diameters. Comparing to Lunar Reconnaissance Orbiter (LRO) and Lunar Orbiter Laser Altimeter (LOLA) data.
+8 | :star: | Planets | Orbital data, density, radius, mass etc. | Comparing planets by looking at data from the NASA Planetary Factsheet such as mass and radius etc. Looking briefly at exoplanet detection and observational bias.
+9 | :star: | Planetary Interiors | Structure of the planets csv and chemcial composition of the Earth csvs. | Visualising the interiors of planets, visualise the chemical composition of the Earth's interior.
+10 | :star::star: | Planetary Atmospheres | Chemical composition of planetary atmospheres. Exobase altitudes and temperatures (with escape velocities).  | Visualising and comparing the chemical composition of planetary atmospheres. Calculating whether a planet can hold onto a gas using escape velocities and kinetic theory.
+11 | :star::star: | Earth's Heat| Geothermal gradient data and pressure data.  | Visualise the thermal gradient of the Earth. Model the geotherm of the lithosphere. Calculate energy transfer via conduction and latent heat.
+12 | :star::star: | Earth's Atmosphere | Data to construct the international standard atmosphere (ISA) model. | Visualising the temperature, pressure, density, and speed of sound variation with altitude using the ISA model.
+13 |  | Martian Surface | | COMING SOON!
+14 | :star::star: | Planetary Rings | Data on the ring structure for all gas giants and data on their moons. | Visualising the ring structure of Saturn and the other gas giants. Calculating roche limits for some moons.
+15 | :star::star::star:+ | Ring Dynamics | Data on Saturns moons. | Visualising the Roche limit with an N-body simulation. Calculating the locations of mean-motion resonances. Looking at bending and density waves, and the effects of shepherd moons.
+
+# Specials
+
+A folder with an S then a number (S001 for instance) is a special activity.
+
+Special Number |  Description  | Data Files  | Comments
+------------ | -----------| -------------   | ----------- 
+1 | Celebrate the landing of the Mars 2020 Perseverance Rover by calculating launch windows to Mars with a Hohmann transfer orbit. | Ecliptic longitude and distance data for Earth and Mars | Also includes a notebook which makes the Hohmann transfer rover gif [here](https://github.com/astroDimitrios/Astronomy/blob/master/Code/S001%20-%20Mars%202020%20Launch%20Windows/GIF%20Files/social.gif).
+2 | Team Seas - Analyse plastic discharge by rivers using data from the Ocean Cleanup Project | Shapefile of river plastic discharge data |
+
+# Challenges
+
+Astronomy and Python challenge excercises are now stored in the ***Challenges*** directory. As of the 2022 Maintenance Update 1 no new challenges will be issued as I work towards a more impactful way to engage the community, see [here](https://www.astropython.com/challenge.html).
+
+## How to run the code
+
+**2022 Maintenance Update 1**: A basic conda environment file ***env.yml*** is provided which most activities will run in, which is just a normal scientific Python stack with astropy. Some activities have their own ***.yml*** file with extra dependencies.
+
+<p><strong>Testing Activites:</strong>If you would like to test any activities online you can email me and I will activate our JupyterHub server for 48 hours. Unfortunately I can no longer keep it running 24/7 due to running costs. When the server is up - Sign up <a href="https://hub.astropython.com/hub/signup">here</a> with a username and password then head over to <a href="https://hub.astropython.com/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2FastroDimitrios%2FLaunch&urlpath=lab%2Ftree%2FLaunch%2FWelcome.ipynb&branch=main">hub.astropython.com</a> and log in! (It's important to use the second link after signing up so you get sent to the Welcome document)
+
+**NOTE:** The server may go down periodically. If you want to keep your work please download it to your local computer, do NOT assume it is safe forever on the hub. 
+
+The welcome document has links which pull the activities you want to try from my GitHub. If something doesn't work please let me know! The server is built for my students so it can only handle 20-30 people at a time. If you do test out some of the activities let me know what you think.</p>
+
+**Alternate ways of running notebooks**
+
+The .ipynb files can be run my going to https://jupyter.org/try.  
+Click on **Try JupyterLab** and wait for it to load.  
+Upload the **.ipynb** file using the Upload File button (little upwards arrow in the top right).
+
+Or you could install JupyterLab on your local machine.
+
+The **.ipynb** files contain tasks for students. The Teacher **.ipynb** file contains the solutions.
+
+**NOTE** - Sometimes there is a **.py** file with solutions and code to create more complex figures. I have NOT checked that these will run on JupyterLab. They were used to test my code before creating the interactive JupyterLab Notebooks.
+
+## Data
+
+There is now a ***Data*** directory where all data is stored. I will continue to keep all data files needed in their respective assignment directories as well. Some activity data is stored on Google Drive due to large file sizes. Links are given inside the individual activity directories if applicable.
+
+## Assignment grading
+
+**nbgrader**
+
+[nbgrader](https://nbgrader.readthedocs.io/en/stable/index.html) is a tool to make assignments out of notebooks and mark them.
+
+I have integrated this easily with the notebooks - email me for more info. As of 2022 Maintenance Cycle 1 nbgrader files are no longer tracked/uploaded t o this repo.## AstroCV
+
+[AstroCV](https://github.com/astroCV/astroCV) is a package intended to contain computer vision algorithms and methods for processing and analyzing astronomical datasets. The main goal is developing and promoting the use of modern computer vision algorithms for solving scientific problems in astronomy.
+
+For installation instructions, see the online documentation for required libraries or check the installation guide installation_guide.md in this source distribution.
+
+The paper on AstroCV is in this [file](https://github.com/astroCV/astroCV/blob/master/ASTROCV_ASCOM_ACCEPTED_ARXIV_VERSION.pdf)
+
+## Contents
+
+### galaxy_detection
+
+In README.md you can find a detailed guide on how to train your own network.
+
+Four examples can be found in this folder. These examples show detections in different images. The first and second example work with .jpg images. The third example downloads images from the web. The fourth example processes three .fits images for the same photo (i, r and g filters), then applies different filters to the rgb matrix (e.g. lupton, sqrt) and finally tests the detector with the images. 
+
+In the traning folder, you can find .py codes to download the images from SDSS, convert them into .jpg and process and prepare files to be traning ready.
+
+### tutorials
+
+This folder contains introductive tutorials to computer vision, deep learning and creating a dataset from the NGFS survey.
+
+### tools/color_image
+
+In this folder you can find two .py scripts for making galaxy snapshots and creating .jpg images.
+
+## Download data
+
+[Download NGFS data](https://www.scidrive.org/scidrive/scidrive.html?share=OGDXRuYTNlgvgti)
+
+[Download AstroCV data](https://www.scidrive.org/scidrive/scidrive.html?share=7YANf7V8SnBzIgi)
+
+
+## License
+Astropy is licensed under a 3-clause BSD style license - see the
+``LICENSE`` file.
+IDLAstro
+========
+
+Astronomy related procedures in the commercial IDL language
+.. -*- mode: rst -*-
+
+Machine Learning for Astronomical Data Analysis
+=================================================
+
+**Note: this content is extremely out-of-date, and I would not recommend using it**
+
+If you would like a more up-to-date machine learning tutorial that grew from this
+content, I'd recommend the [Python Data Science Handbook](http://github.com/jakevdp/PythonDataScienceHandbook).
+# Virgo: A Versatile Spectrometer for Radio Astronomy
+<p align="center">
+  <img src="https://i.imgur.com/lH2OOTd.png?raw=true" alt="Virgo Spectrometer"/>
+</p>
+
+<p align="center">
+  <a href="https://joss.theoj.org/papers/612c2634c1dd83749e95a93449740861"><img src="https://joss.theoj.org/papers/612c2634c1dd83749e95a93449740861/status.svg"></a>
+  <img src="https://img.shields.io/badge/python-2.7%20%7C%203.x-green"/>
+  <img src="https://img.shields.io/pypi/v/astro-virgo"/>
+  <img src="http://img.shields.io/badge/powered%20by-AstroPy-orange.svg?style=flat"/>
+  <img src="https://img.shields.io/github/license/0xCoto/Virgo?color=yellow"/>
+</p>
+
+
+## About Virgo
+**Virgo** is an easy-to-use **open-source** spectrometer and radiometer based on [Python](https://www.python.org) and [GNU Radio](https://wiki.gnuradio.org) (GR) that is conveniently applicable to any radio telescope working with a GR-supported software-defined radio (SDR). In addition to data acquisition, Virgo also carries out automated analysis of the recorded samples, producing an **averaged spectrum**, a **calibrated spectrum**, a **dynamic spectrum (waterfall)**, a **time series (power vs time)** and a **total power distribution** plot.
+
+Lastly, an important set of utilities is provided to observers, making the package for a great tool for planning (radio) observations, estimating the system sensitivity of an instrument, and many more.
+
+## Statement of Need
+
+Designed to be used by students, educators and amateurs in the field of radio astronomy, Virgo has already been adopted by a number of small and large-aperture radio telescopes, permitting both spectral and continuum observations with great success. These instruments include the ISEC TLM-18 (18m), the ACRO RT-320 (3.2m), the JRT (1.9m), and the PICTOR Telescope (1.5m), among others.
+
+Although the hardware aspect of a radio telescope is generally handled by newcomers with relative ease, the skill set needed to integrate a complete software pipeline to support observations is not something most users are equipped with. Virgo tackles this problem by providing non-experts with a tool to collect and interpret data from radio telescopes, without requiring expertise in digital signal processing and software engineering. An example use case is classroom experiments in which students build a small-aperture antenna connected to a low-noise amplifier followed by an SDR, and with the help of Virgo, obtain data to map out the galactic distribution of neutral hydrogen and/or derive the rotation curve of the Milky Way.
+
+### Key Features
+
+- 4-tap weighted overlap-add (WOLA) Fourier transform spectrometer
+- - Reduced FFT sidelobes
+- - Plain FT filterbank pipeline also supported for observatories with limited computational resources
+- Adjustable SDR parameters
+- - Device arguments
+- - RF/IF/BB Gain
+- Header file
+- - Observation parameters automatically passed to corresponding `.header` file
+- - Includes logged MJD (at observation *t<sub>0</sub>*)
+- Spectral line support
+- - Spectrum calibration
+- - - *y* axis is automatically rescaled to S:N units with line masking
+- - - Optional automatic slope correction (based on linear regression) for poorly-calibrated spectra
+- - Supports median operation for RFI mitigation on the frequency-domain (adjustable *n*-factor)
+- - RFI channel masking
+- - Adjustable *f*<sub>rest</sub> for observation of any spectral line (not just HI)
+- - Secondary axes for relative velocity automatically adjusted accordingly
+- - Prevention against strong narrowband RFI rescaling subplot
+- - The average spectra, calibration spectra and calibrated spectra are optionally saved as a `csv` file for further analysis
+- Continuum support
+- - Supports median operation for time-varying RFI mitigation (adjustable *n*-factor)
+- - Total power distribution (histogram) displayed, both for raw and clean data
+- - - Best Gaussian fits computed automatically
+- - Prevention against strong short-duration RFI rescaling subplot
+- - Time series optionally saved as a `csv` file for further analysis
+- Pulsars
+- - Incoherent dedispersion support for giant pulse search (and FRB follow-up, assuming DM is known)
+- Dynamic spectrum (waterfall)
+- - Optionally saved as a `FITS` file for further advanced/custom analysis
+- Decibel support
+- - Power units optionally displayed in dB
+- Observation planning toolkit
+- - Predict source altitude & azimuth vs time
+- - Quickly convert galactic to equatorial and Alt/Az to RA/Dec
+- - Plot telescope position on the 21 cm all-sky survey
+- - Simulate 21 cm profiles based on the LAB HI survey
+- Basic calculation toolkit for system sensitivity & performance. Computes:
+- - Antenna gain (in dBi, linear or K/Jy)
+- - Effective aperture
+- - Half-power beamwidth
+- - Noise figure to noise temperature and vice versa
+- - Antenna gain-to-noise-temperature (G/T)
+- - System equivalent flux density (SEFD)
+- - Radiometer equation (S:N estimation)
+- Built-in tool for conducting rapid RFI surveys
+- Argument-parsing support
+- Works directly from the command line (`virgo -h`), or as a Python module
+
+---
+
+## Telescopes based on the Virgo Spectrometer
+- ISEC TLM-18 Telescope (18m)
+- ACRO RT-320 (3.2m)
+- SALSA Vale Telescope (2.3m) [potentially soon, but already tested]
+- SALSA Brage Telescope (2.3m) [potentially soon, but already tested]
+- JRT (1.9m)
+- PICTOR Telescope (1.5m)
+- NanoRT Telescope (15cm)
+- and more!
+
+### Example Observation
+<p align="center">
+  <img src="https://i.imgur.com/ROPPWza.png" alt="Example Observation"/>
+</p>
+Observation of galactic clouds of neutral hydrogen toward the constellation of Cygnus (α = 20h, δ = 40° , l = 77° , b = 3°), observed by the TLM-18 Telescope in New Jersey, U.S. with Virgo. The average spectrum (top left), the calibrated spectrum (top center), the dynamic spectrum (top right) and the time series along with the total power distribution (bottom) are all plotted by the software automatically.
+
+### Example Source Location Prediction
+<p align="center">
+  <img src="https://i.imgur.com/jnGJEvQ.png" alt=""/>
+</p>
+
+### Example HI Profile Retrieval
+<p align="center">
+  <img src="https://i.imgur.com/HHSkDJM.png" alt="Example HI Profile Retrieval"/>
+</p>
+
+### Example HI Map
+<p align="center">
+  <img src="https://i.imgur.com/bvg4r4c.png" alt="Example HI map plot"/>
+</p>
+The red dot indicates the position of the telescope's beam in the sky.
+
+## Data Acquisition Flowgraph
+**Virgo** is a **four-tap WOLA Fourier transform** spectrometer. The raw I/Q samples are processed in real time using GNU Radio, with the amount of data stored to file being drastically reduced for further analysis. The following flowgraph handles the acquisition and early-stage processing of the data:
+
+![alt text](https://i.imgur.com/5tR7WjL.png "Data Acquisition Flowgraph")
+
+### Example radio map acquired and processed with the help of Virgo (PICTOR Northern HI Survey)
+![alt text](https://i.imgur.com/pYgMAhW.png "PICTOR HI Survey")
+
+## Installation
+To use **Virgo**, make sure **[Python](https://www.python.org/)** and **[GNU Radio](https://wiki.gnuradio.org/index.php/InstallingGR)** (with **[gr-osmosdr](https://osmocom.org/projects/gr-osmosdr/wiki)**) are installed on your machine.
+
+For Debian/Ubuntu and derivates, the installation is straightforward:
+
+```
+sudo apt install gnuradio gr-osmosdr
+```
+
+**Note:** The `GNU Radio` and `gr-osmosdr` dependencies are only required for **acquiring data with the necessary hardware** (software-defined radio). They are not required for planning observations, analyzing data, running calculations or any other functionalities provided by the package. For more information, please refer to the [Dependencies section](https://virgo.readthedocs.io/en/latest/installation.html#dependencies).
+
+Once Python and GNU Radio are installed on your system, run
+
+```
+pip install astro-virgo
+```
+
+## Documentation
+To learn how to use Virgo, please read through the documentation **[here](https://virgo.readthedocs.io/en/latest/)**.
+
+If you believe something is not clarified in the documentation page, you are encouraged to **[create an issue](https://github.com/0xCoto/Virgo/issues/new)** (or send me an [e-mail](mailto:0xcoto@protonmail.com) and I'll be happy to help.
+
+## Contributing
+If you wish to contribute to the package (either with code, ideas or further documentation), please read through the **[Contributor Guidelines](https://github.com/0xCoto/Virgo/blob/master/docs/contributing.md)**.
+
+## Credits
+**Virgo** was created by **[Apostolos Spanakis-Misirlis](https://www.github.com/0xCoto/)**.
+
+**Contact:** [0xcoto@protonmail.com](mailto:0xcoto@protonmail.com)
+
+---
+
+Special thanks to **Dr. Cameron Van Eck**, **Paul Boven** and **Dr. Cees Bassa** for their valuable contributions.
+# Tutorials
+Set of Jupyter Notebooks, along with datafiles, to get started with Scientific Computing in Astronomy  
+
+***
+
+## [How to setup Jupyter notebooks](./Jupyter%20Setup#jupyter-setup )
+
+1. ### [Windows](./Jupyter%20Setup#windows )
+2. ### [MacOS](./Jupyter%20Setup#macos )
+3. ### [Linux distribution (includes Ubuntu)](./Jupyter%20Setup#linux-distribution-includes-ubuntu )
+    1. #### [Installing Jupyter - Using Conda or Miniconda](./Jupyter%20Setup#installing-jupyter---using-conda-or-miniconda )
+    2. #### [Installing Jupyter - Using python-pip (Try this only if you are comfortable with terminal)](./Jupyter%20Setup#installing-jupyter---using-python-pip-try-this-only-if-you-are-comfortable-with-terminal )
+
+***
+
+## [How to use Jupyter notebooks](./How%20to%20use%20Jupyter%20Notebooks#using-jupyter-notebooks )
+
+1. ### [Opening the Notebooks](./How%20to%20use%20Jupyter%20Notebooks#opening-the-notebook )
+2. ### [Jupyter Notebook Dashboard](./How%20to%20use%20Jupyter%20Notebooks#jupyter-notebook-dashboard )
+3. ### [Creating a new notebook document](./How%20to%20use%20Jupyter%20Notebooks#creating-a-new-notebook-document )
+4. ### [Overview of the Notebook UI](./How%20to%20use%20Jupyter%20Notebooks#overview-of-the-notebook-ui )
+5. ### [Cell types](./How%20to%20use%20Jupyter%20Notebooks#cell-types )
+6. ### [Modal Editor](./How%20to%20use%20Jupyter%20Notebooks#modal-editor )
+    1. #### [Edit Mode](./How%20to%20use%20Jupyter%20Notebooks#edit-mode )
+    2. #### [Command Mode](./How%20to%20use%20Jupyter%20Notebooks#command-mode )
+    3. #### [Running Code](./How%20to%20use%20Jupyter%20Notebooks#running-code )
+    4. #### [Keyboard Navigation](./How%20to%20use%20Jupyter%20Notebooks#keyboard-navigation )
+    5. #### [Mouse Navigation](./How%20to%20use%20Jupyter%20Notebooks#mouse-navigation )
+    6. #### [Cheat Sheet](./How%20to%20use%20Jupyter%20Notebooks#cheat-sheet-for-menu-bar-and-tool-bar )
+
+***
+
+## [Tutorial 1 : Basics of Python](./Tutorial_01)
+
+* Basic syntax, and syntax for loops, conditional statements, and opening simple files, (lists, tuples and dictionaries)
+* Parse a file and make a list containing the number of moons for each planet.
+
+***
+
+## [Tutorial 2 : Introduction to NumPy](./Tutorial_02)
+
+* Numpy arrays, indexing, slicing.
+* Parse file as above using numpy (np.where, for example).
+* Beehive Cluster.
+
+***
+
+## [Tutorial 3 : Functions in Python](./Tutorial_03)
+
+* Defining functions.
+* Hubble Law, Number density of galaxies.
+
+***
+
+## [Tutorial 4 : Introduction to Matplotlib (Matplotlib I)](./Tutorial_04)
+
+* Simple Plotting. Labels, colors, title, grid
+* GW astronomy
+
+***
+
+## [Tutorial 5 : Introduction to Astropy and FITS format (Astropy I)](./Tutorial_05)
+
+* Using Astropy.io to import datafiles, astropy.table.
+* Take the data from a harder to parse data file.
+* Introduction to fits files.
+
+***
+
+## [Tutorial 6 : Web Scraping](./Tutorial_06)
+
+* Scrape web for some data (try to do this for constellations)
+* Make an image of the constellation using RA, Dec or Mars in retrograde (simple scatter plot)
+
+***
+
+## [Tutorial 7 : Curve Fitting (SciPy I)](./Tutorial_07)
+
+* Curve fitting
+* Scrape data from Cepheids, and plot Period-Luminosity relation
+* Frequency vs time inspiral
+
+***
+
+## [Tutorial 8 : Image Reduction](./Tutorial_08)
+
+* Using Bias and Flats.
+* Reducing an image of a popular target. (And further processing)
+
+***
+
+## [Tutorial 9 : Advanced Plotting (Matplotlib II)](./Tutorial_09)
+
+* Subplots, and Using Object Oriented approach
+* Make several HR diagrams, say, with different filters.
+* Compare features, and observe that UV filters are good at filtering multiple stellar populations.
+
+***
+
+## [Tutorial 10 : Astropy Quantities (Astropy II)](./Tutorial_10)
+
+* Using astropy quantities, make a black body spectra.
+* Using filters (SDSS), find the instrumental magnitude of a star in different bands.
+* Have a function which returns these values, given the temperature of a star.
+
+***
+
+## [Tutorial 11 : Classes in Python](./Tutorial_11)
+
+* Make a class for a star and a filter.
+* Rewrite the previous codes to make it more adaptable to changes.
+
+***
+
+## [Tutorial 12 : Time Domain Astronomy (SciPy II)](./Tutorial_12)
+
+* Time Series analysis.
+* Find a peak/Periodicity search.
+
+***
+
+## [Tutorial 13 : Coordinate Systems (Astropy III)](./Tutorial_13)
+
+* Coordinate Systems and Time.
+* Convert coordinates. Plot an analemma of the Sun. See how it changes with latitude.
+
+***
+
+## [Tutorial 14 : Differential Equations (SciPy III)](./Tutorial_14)
+
+* Differential Equation solving. Scipy.integrate.solve_ivp.
+* Solve differential equations for some system numerically.
+
+***
+This is the source code repository for ERFA (Essential Routines for
+Fundamental Astronomy).  ERFA is a C library containing key algorithms for
+astronomy, and is based on the `SOFA library <http://www.iausofa.org/>`_ published by the International
+Astronomical Union (IAU).
+
+ERFA is intended to replicate the functionality of SOFA (aside from possible
+bugfixes in ERFA that have not yet been included in SOFA), but is licensed
+under a three-clause BSD license to enable its compatibility with a wide
+range of open source licenses. Permission for this release has been
+obtained from the SOFA board, and is available in the ``LICENSE`` file included
+in this source distribution.
+
+Differences from SOFA
+---------------------
+
+This version of ERFA (v2.0.0) is based on SOFA version "20210512", with the
+differences outlined below.
+
+ERFA branding
+^^^^^^^^^^^^^
+
+All references to "SOFA" in the source code have been changed to ERFA, and
+functions have the prefix ``era`` instead of ``iau``.
+
+C macro prefixes
+^^^^^^^^^^^^^^^^
+
+All C macros used in ERFA are the same as their SOFA equivalents, but with an
+``ERFA_`` prefix to prevent namespace collisions.
+
+Version information
+^^^^^^^^^^^^^^^^^^^
+
+ERFA provides a few utility functions for accessing version information at
+runtime which are not a part of SOFA.  Specifically, these are the
+``eraVersion``, ``eraVersion*``, and ``eraSofaVersion`` functions that are
+exposed in the ``erfaextra.h`` header.
+
+Runtime leap second modification
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+ERFA provides the capability to modify at runtime the leap seconds assumed for
+various calculations. These are accessed via the ``eraGetLeapSeconds`` and
+``eraSetLeapSeconds`` functions that are exposed in the ``erfaextra.h`` header.
+This functionality is currently considered somewhat experimental, meaning an
+improved API might be available in the future, but the current API can also be
+counted on for the near future.
+
+Bug fixes
+^^^^^^^^^
+
+ERFA includes smaller changes that may or may not eventually make it into SOFA,
+addressing localized bugs or similar smaller issues:
+
+* ERFA 2.0.0 and SOFA "20210512"
+
+  + Functionally, there no differences except for the added ``eraVersion``,
+    ``eraSofaVersion``, and leap second functions noted above.
+  + The three new functions added in SOFA are added to ERFA as well.
+  + Like for SOFA, one now has to explicitly include ``erfam.h`` to use its
+    macros defining constants, etc. Including just ``erfa.h`` (or
+    ``erfaextra.h``) will no longer includes ``erfam.h`` implicitly.
+
+* ERFA 1.7.3 and SOFA "20210125_a"
+
+  + Only a small bug fix in the SOFA release.  The only differences
+    between ERFA 1.7.3 and SOFA "20210125_a" remain the added ``eraVersion``,
+    ``eraSofaVersion``, and leap second functions noted above.
+
+* ERFA 1.7.2 and SOFA "20210125"
+
+  + Only bug and accuracy fixes in the SOFA release.  The only differences
+    between ERFA 1.7.2 and SOFA "20210125" remain the added ``eraVersion``,
+    ``eraSofaVersion``, and leap second functions noted above.
+
+* ERFA 1.7.1 and SOFA "20200721"
+
+  + Only bug fixes in the SOFA release.  The only differences between ERFA 1.7.1
+    and SOFA "20200721" remain the added ``eraVersion``, ``eraSofaVersion``, and
+    leap second functions noted above.
+
+* ERFA 1.7.0 and SOFA "20190722"
+
+  + There are no differences between ERFA 1.7.0 and SOFA "20190722" except
+    for the added ``eraVersion``, ``eraSofaVersion``, and leap second functions
+    noted above.
+
+* ERFA 1.6.0 and SOFA "20190722"
+
+  + There are no differences between ERFA 1.6.0 and SOFA "20190722" except
+    for the ``eraVersion`` and ``eraSofaVersion`` functions added in ERFA 1.4.0.
+
+* ERFA 1.5.0 and SOFA "20180130"
+
+  + There are no differences between ERFA 1.5.0 and SOFA "20180130" except
+    for the ``eraVersion`` and ``eraSofaVersion`` functions added in ERFA 1.4.0.
+
+* ERFA 1.4.0 and SOFA "20170420"
+
+  + ERFA 1.4.0 adds the ``eraVersion`` and ``eraSofaVersion`` functions to
+    determine the installed version of ERFA (and the SOFA version it is derived
+    from).
+
+  + ERFA 1.4.0 includes some bug fixes contributed to ERFA after 1.3.0 but
+    before 1.4.0.  These were incorporated (with modification) into
+    SOFA "20170420" (without attribution) and hence these are not differences
+    between ERFA and SOFA. (See https://github.com/liberfa/erfa/issues/40 and
+    https://github.com/liberfa/erfa/issues/41)
+
+* ERFA 1.3.0 and SOFA "20160503_a"
+
+  + There are no differences between ERFA 1.3.0 and SOFA "20160503_a".
+
+* ERFA 1.2.0 and SOFA "20150209_a"
+
+  + Typos have been corrected in the documentation of atco13 and atio13 (see https://github.com/liberfa/erfa/issues/29).
+
+Note that issues identified in ERFA should generally also be reported upstream to SOFA at sofa@ukho.gov.uk.
+
+Building and installing ERFA
+----------------------------
+
+To build and install a released version of ERFA in your OS's standard
+location, you need to install `meson <https://mesonbuild.com/Getting-meson.html>`_
+and `ninja <https://ninja-build.org/>`_. On Debian-based OSes, these
+can be installed with ``apt install meson``.
+
+Then, simply do::
+
+    meson setup builddir/
+    ninja -C builddir/
+    meson install -C builddir/
+
+If you want to run the tests to make sure ERFA built correctly, before
+installing do::
+
+    meson test -C builddir/
+
+
+For developers
+^^^^^^^^^^^^^^
+
+If you wish to build against the ERFA static library without installing, you
+can add ``$PWD/builddir/meson-uninstalled/`` to the ``$PKG_CONFIG_PATH``
+variable. Other projects will then be able to pick up and link to the uninstalled
+dependency using pkg-config as normal.
+
+Creating a single-file version of the source code
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Alternatively, if you wish to bundle the ERFA source code with a separate
+package, you can use the ``source_flattener.py`` script from the
+`erfa-fetch repository`_ to combine
+the ERFA source code into just two files: a ``erfa.c`` source file, and an
+``erfa.h`` include file.  You should run this script like this::
+
+    cd /path/to/erfa-source-code
+    python /path/to/erfa-fetch/source_flattener.py src -n erfa
+
+If possible, however, it is recommended that you provide an option to use any
+copy of the ERFA library that is already installed on the system.
+
+Travis build status
+-------------------
+.. image:: https://travis-ci.org/liberfa/erfa.png
+    :target: https://travis-ci.org/liberfa/erfa
+
+.. _erfa-fetch repository: https://github.com/liberfa/erfa-fetch
+
+Cite As
+-------
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3564896.svg
+   :target: https://doi.org/10.5281/zenodo.3564896
+# Open Astronomy Catalog API v1.0
+
+[![Website](https://img.shields.io/website-up-down-green-red/https/api.astrocats.space.svg?label=status)](https://github.com/astrocatalogs/OACAPI)
+
+API usage over the last 7 days:
+
+[![Calls](https://img.shields.io/badge/dynamic/json.svg?label=successful%20queries&colorB=ff69b4&&query=$.count&uri=https%3A%2F%2Fastrocats.space%2Fapi-count.php&logo=quantopian&logoColor=ff69b4)](https://github.com/astrocatalogs/OACAPI)
+[![Uniques](https://img.shields.io/badge/dynamic/json.svg?label=unique%20users&colorB=bc44ee&query=$.unique&uri=https%3A%2F%2Fastrocats.space%2Fapi-count.php&logo=odnoklassniki&logoColor=bc44ee)](https://github.com/astrocatalogs/OACAPI)
+[![Trending](https://img.shields.io/badge/dynamic/json.svg?label=trending%20objects&colorB=550000&query=$.top5&uri=https%3A%2F%2Fastrocats.space%2Fapi-count.php&logo=koding&logoColor=550000)](https://github.com/astrocatalogs/OACAPI)
+
+The Open Astronomy Catalog API (OACAPI) offers a lightweight, simple way to access data available via the Open Astronomy Catalogs (e.g. the <a href="https://sne.space">Open Supernova</a>, <a href="https://tde.space">Tidal Disruption</a>, <a href="https://kilonova.space">Kilonova</a>, and <a href="https://faststars.space">Fast Stars</a> Catalogs). The API is accessible via a route that works via any of the catalog domains,
+
+https://api.astrocats.space/
+
+https://api.sne.space/
+
+https://api.tde.space/
+
+https://api.kilonova.space/
+
+https://api.faststars.space/
+
+where the only difference is preference in catalog when returning items that appear on multiple catalogs. For the examples below we will (usually) use the api.astrocats.space route. By default, all returned values are provided in JSON format, unless a `format=` URL variable is provided.
+
+## General use
+
+The pattern for the API is one of the domains listed above (e.g. `https://api.astrocats.space`) followed by
+
+`/OBJECT/QUANTITY/ATTRIBUTE?ARGUMENT1=VALUE1&ARGUMENT2=VALUE2&...`
+
+where `OBJECT` is set to a transient's name, `QUANTITY` is set to a desired quantity to retrieve (e.g. redshift), `ATTRIBUTE` is a property of that quantity, and the `ARGUMENT` variables allow to user to filter data based upon various attribute values. The `ARGUMENT` variables can either be used to guarantee that a certain attribute appears in the returned results (e.g. adding `&time&e_magnitude` to the query will guarantee that each returned item has a `time` and `e_magnitude` attribute), or used to filter via a simple equality such as `telescope=HST` (which would only return `QUANTITY` objects where the `telescope` attribute equals `"HST"`), or they can be more powerful for certain filter attributes (examples being `ra` and `dec` for performing cone searches).
+
+Key names that are usable in API calls can be found in the [OAC schema](https://github.com/astrocatalogs/schema). Below, we provide some example queries that demonstrate the API's capabilities.
+
+### Special arguments
+
+There are a few arguments that have special meaning and are only a part of the API, not the schema:
+
+* `closest`: Return the quantities with the closest value to the specified attributes. If multiple attributes are specified, the closest to each will be returned (e.g., `magnitude=15&time=56789&closest` would return *both* the observation with magnitude closest to 15 and time closest to 56789.
+* `complete`: Return only quantities containing all of the requested attributes.
+* `first`: Return only the first of each of the listed quantities.
+* `format=x`: Return data in the specified format `x`, currently supports `csv` and `tsv`. Any other format specification will return `JSON`.
+* `item=n`: Return only the `n`th item of each of the listed quantities.
+* `radius=r`: Return objects within a distance `r` (in arcseconds) of a given set of `ra` and `dec` coordinates. Note that this disables exact matches for `ra` and `dec`.
+* `width=w`: Return objects within a distance `w` (in arcseconds) of a given `ra` value (for box searches).
+* `height=h`: Return objects within a distance `h` (in arcseconds) of a given `dec` value (for box searches).
+* `sortby=s`: Sort the returned array by the attribute `s` (only works when returning results in `csv`/`tsv` formats).
+
+## Example queries
+
+#### Return basic information about the API service (and a link back to this README)
+
+https://api.astrocats.space/
+
+#### Return all objects within a 2" cone about a set of coordinates
+
+https://api.astrocats.space/catalog?ra=21:23:32.16&dec=-53:01:36.08&radius=2
+
+#### Return all supernova metadata in CSV format
+
+https://api.sne.space/catalog?format=CSV
+
+By default, queries such as the two above will return the catalog entries for objects that satisfy the search conditions. To return data from a specific catalog when searching by a criterion such as position, the user should insert `catalog/` into the URL before the rest of the query of the specific catalog they are interested in, as shown in the example below:
+
+#### Redshifts of all supernovae with a redshift reported within 5° of a coordinate, in CSV format
+
+https://api.sne.space/catalog/redshift?ra=10:42:16.88&dec=-24:13:12.13&radius=18000&format=csv&redshift
+
+If the user instead wishes to return info on all objects across all catalogs, the `all/` route should be used instead (any URL can be used with this route):
+
+#### Redshifts of all objects with a redshift reported within 5° of a coordinate, in CSV format
+
+https://api.astrocats.space/catalog/redshift?ra=10:42:16.88&dec=-24:13:12.13&radius=18000&format=csv&redshift
+
+Individual object queries can return more-detailed information about each object, including datafiles such as spectra. Below, we show some examples of this in action:
+
+#### Get the available redshift values for an object
+
+https://api.astrocats.space/SN2014J/redshift
+
+#### Select the first (preferred) value of the redshift
+
+https://api.astrocats.space/SN2014J/redshift?first, or
+https://api.astrocats.space/SN2014J/redshift?item=0
+
+#### Return all photometric observations with at least one of the `magnitude`, `e_magnitude`, and `band` attributes
+
+https://api.astrocats.space/SN2014J/photometry/magnitude+e_magnitude+band
+
+#### Return the above in CSV format
+
+https://api.astrocats.space/SN2014J/photometry/magnitude+e_magnitude+band?format=csv
+
+#### Only return observations that contain all requested attributes
+
+https://api.astrocats.space/SN2014J/photometry/magnitude+e_magnitude+band?complete
+
+#### Sort the returned photometry by magnitude
+
+https://api.astrocats.space/SN2014J/photometry/magnitude+e_magnitude+band?format=csv&sortby=magnitude
+
+#### Return observations for multiple objects at once, in CSV format
+
+https://api.astrocats.space/SN2014J+SN2015F/photometry/time+magnitude+band?format=csv
+
+#### Return only observations whose attributes include the listed keys (`e_magnitude` and `band`)
+
+https://api.astrocats.space/SN2014J/photometry/time+magnitude+e_magnitude+band?e_magnitude&band
+
+#### Return only observations matching given criteria, in this case band = B
+
+https://api.astrocats.space/SN2014J/photometry/magnitude+e_magnitude+band?band=B
+
+In the following example, we filter upon the `value` of `claimedtype`, but note that this filters `lumdist` as well, since the `value` filter applies to both:
+
+#### Luminosity distances and claimed types of all objects with luminosity distance *and* claimed type equal to Ia (probably not what you intend!)
+
+https://api.astrocats.space/all/lumdist+claimedtype?value=ia
+
+Note that the above returns an empty result. Instead, we want to do:
+
+#### Luminosity distances and claimed types of all objects with an available luminosity distance and "Ia" listed as a type, in TSV format
+
+https://api.astrocats.space/catalog/lumdist+claimedtype?lumdist&claimedtype=ia&format=tsv
+
+Regular expressions are also supported in the `ARGUMENT` fields, allowing users to perform more sophisticated matches to attribute values:
+
+#### Claimed types of all objects with a typing that has a prefix matching "Ia-", in TSV format
+
+https://api.astrocats.space/catalog/claimedtype?claimedtype=Ia-(.*)&format=tsv
+
+Note that many regular expression symbols must be URL-encoded to be passed properly to the API.
+
+#### Return the spectrum closest to the listed MJD
+
+https://api.astrocats.space/SN2014J/spectra/time+data?time=56703.2&closest
+
+The `catalog/` route (combined with filtering) can also return data from the individual object files if data isn't contained within the main OAC catalog files (i.e. the data that is visible on the main pages of the Open Supernova Catalog, etc.). Because these queries are expensive (the full dataset must be loaded for each object), they have some numeric limits to prevent overloading the server.
+
+#### Return all photometry in a 2" radius about a coordinate, in CSV format
+
+https://api.astrocats.space/catalog/photometry/time+band+magnitude?ra=21:23:32.16&dec=-53:01:36.08&radius=2&format=csv
+
+#### Return the instruments used to produce spectra within a 5° of a given coordinate, in CSV format
+
+https://api.astrocats.space/catalog/spectra/instrument?ra=21:23:32.16&dec=-53:01:36.08&radius=18000&format=csv
+# PythonForAstronomy
+Repository for Python Tutorial in Astronomy. We are launching this series which will help you guys do Astronomy from home.
+Starting with a basic introduction to Python, we will be using some Python modules to understand and analyse publically available astronomical data like from SDSS, Hubble legacy archive and NASA's Kepler data.
+
+![cdsc](https://raw.githubusercontent.com/Horizonrepo/PythonForAstronomy/master/Poster.jpeg)
+
+
+## Session 1: Python Basics part1
+
+
+[YouTube video link](https://youtu.be/HfYR0uwYAyM)
+
+
+[Python Basics Part 1 notebook](https://github.com/Horizonrepo/PythonForAstronomy/blob/master/Python%20Basics1/PYTHON%20TUTORIAL%201.ipynb)
+
+## Session 2: Python Basics part2: Plotting and Visualization
+
+
+[YouTube video link](https://youtu.be/bGQQnNWlcMM)
+
+[Python Basics Part 2 notebook](https://github.com/Horizonrepo/PythonForAstronomy/blob/master/Python%20Basic%202/PYTHON_TUTORIAL%202.ipynb)
+
+
+### Installing Astropy
+
+![image](https://upload.wikimedia.org/wikipedia/commons/5/5a/Logo_of_the_Astropy_Project.png)
+
+Astropy link: https://www.astropy.org/
+
+To install astropy from source into a existing Python installation without using Anaconda, use the following:
+`<pip install astropy>`
+  
+The Anaconda Python Distribution includes astropy and is the recommended way to install both Python and the astropy package. Once you have Anaconda installed use the following to update to the latest version of astropy:
+
+`<conda update astropy>`
+  
+## Session 3: Manipulating FITS files using Astropy
+
+[YouTube video link](https://youtu.be/goH9yXu4jWw)
+
+[FITS Handling notebook](https://github.com/Horizonrepo/PythonForAstronomy/blob/master/FITS%20Handling/PythonforAstronomy3.ipynb)
+
+
+## Session 4: Color-Magnitude Diagram
+[CMD Jupyter Notebook](https://github.com/Horizonrepo/PythonForAstronomy/blob/master/Color-Magnitude-Diagrams/Color-Magnitude%20Diagrams.ipynb)
+![Cosmonium](textures/cosmonium-name.png)
+
+[![Build Status](https://github.com/cosmonium/cosmonium/workflows/build/badge.svg)](https://github.com/cosmonium/cosmonium/actions)
+[![Latest release](https://img.shields.io/github/v/release/cosmonium/cosmonium?label=Lastest%20release)](https://github.com/cosmonium/cosmonium/wiki/Download)
+[![Latest build](https://img.shields.io/github/v/release/cosmonium/cosmonium?include_prereleases&label=Lastest%20build)](https://github.com/cosmonium/cosmonium/wiki/Download)
+[![GitHub](https://img.shields.io/github/license/cosmonium/cosmonium)](https://github.com/cosmonium/cosmonium/blob/master/COPYING.md)
+
+Cosmonium is a 3D astronomy and space exploration program. With Cosmonium you can navigate in our solar system and discover all the planets and their moons. You can also visit the neighboring stars and discover the true size of our galaxy and the Universe.
+
+Cosmonium supports (or will support) the creation of fictional planets, stellar systems nebulaes, ... using procedural generation.
+
+Cosmonium also already supports some Celestia addons (though CMOD and CelX are not yet supported).
+
+### Requirements
+
+Cosmonium runs on Windows (Vista or above), Linux (CentOS 5, Ubuntu 14 or above) or macOS (mac0S 10.9 or above)
+with a graphic card supporting OpenGL 2.1 or better (OpenGL 4.5 is recommended) and at least 512MB of disk
+(up to 4GB if the HD and UHD textures are installed).
+
+### Installation 
+
+Download the installer or package for your platform from the [download](https://github.com/cosmonium/cosmonium/wiki/Download) page and see the [[Installation]] page
+The package contains only low resolution textures, see [here](https://github.com/cosmonium/cosmonium/wiki/Download#extra-textures) to install extra HD and UHD textures.
+
+### Screenshots
+
+See in the [Wiki](https://github.com/cosmonium/cosmonium/wiki/Screenshots) some screenshots of the application with views of
+[Saturn](https://github.com/cosmonium/cosmonium/wiki/Screenshots#rings-of-saturn),
+[Jupiter](https://github.com/cosmonium/cosmonium/wiki/Screenshots#io-casting-a-shadow-on-jupiter),
+[Mars](https://github.com/cosmonium/cosmonium/wiki/Screenshots#phobos-over-mars),
+the [Moon](https://github.com/cosmonium/cosmonium/wiki/Screenshots#moon-crescent),
+[procedural planets](https://github.com/cosmonium/cosmonium/wiki/Screenshots#procedural-planet), ...
+
+![Jupiter](https://github.com/cosmonium/cosmonium/wiki/screenshots/Io+Jupiter.png)
+
+### Launch
+
+Simply starts cosmonium from your application menu or from the cosmonium folder. See also the [installation](https://github.com/cosmonium/cosmonium/wiki/Installation) page for more options.
+
+### User interface
+
+Cosmonium user interface is still heavily based on Celestia, most of the command and keyboard shortcuts work the same.
+Go to [First steps](https://github.com/cosmonium/cosmonium/wiki/First-steps) to have an explanation of the basic command or see the [Control](https://github.com/cosmonium/cosmonium/wiki/Control) page for an exhaustive list.
+
+### Full documentation
+
+Cosmonium is still in its infancy, but it is already usable to explore all the planets and the moons of our solar system, all the neighbor or visible stars and much more.
+It also support custom content and addons, either as Cosmonium or Celestia addons.
+
+The full documentation is available in the [Wiki](https://github.com/cosmonium/cosmonium/wiki)
+
+### Bugs
+
+If you encounter any problem to install or run Cosmonium, please don't hesitate to fill a bug report in the [issue tracker](https://github.com/cosmonium/cosmonium/issues) here on Github.
+
+## License 
+
+Cosmonium is (C) 2018-2022 Laurent Deru.
+
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details, which you should have received along with this program. If not, request a copy from: Free Software Foundation, Inc. 59 Temple Place - Suite 330 Boston, MA 02111-1307 USA.
+
+Cosmonium uses several third-party libraries which are subject to their own licenses,  see [Third-Party.md](Third-Party.md) for the complete list.
+
+Cosmonium data (textures, models, orbital elements,..) come from many sources. Their respective copyright holder, license and reference are available in the info panel of the displayed object and in the related yaml file.
+
+## Powered by
+
+[![Python](https://github.com/cosmonium/cosmonium/wiki/images/python-powered-w-200x80.png)](http://www.python.org)
+
+[![Panda3D](https://github.com/cosmonium/cosmonium/wiki/images/panda3d_logo.png)](http://www.panda3d.org)
+# FE26
+This is a project for my astronomy class, it's based on gabriele cirulli's 2048
+## License
+FE26 and 2048 are licensed under the [MIT license.](https://github.com/gabrielecirulli/2048/blob/master/LICENSE.txt)
+> 漫漫人生路，赠予有缘人。更新：20221124
+
+❗Books and materials are only for personal learning and use, and the copyright belongs to the original author. If there is any infringement, please contact me!（书籍和资料仅供个人学习使用，版权归原作者所有，如有侵权请联系我！）
+
+```
+encyclopedia
+├── README.md
+└── file
+    ├── China
+    │   ├── 朝代顺序表.docx
+    │   ├── 朝代歌.docx
+    │   ├── 中国朝代顺序表.doc
+    │   ├── 中国历代帝王世系与年号总表.xls
+    │   ├── 中国历代帝王世系年表.pdf
+    │   ├── 中国皇帝顺序表.docx
+    │   ├── 中国历朝历代皇帝.docx
+    │   ├── 中国历代年号大全.doc
+    │   ├── 中国历朝历代都城.doc
+    │   ├── 中国历代皇帝谥号大全.doc
+    │   ├── 中国历代皇帝庙号.doc
+    │   ├── 中国皇帝寿命列表.doc
+    │   ├── 中国历史上的重大事件.docx
+    │   ├── 五千年中国各朝代灭亡兴衰史.docx 
+    │   ├── 中国历代王朝兴亡原因简要.docx
+    │   ├── 中国和世界历史时间轴.doc
+    │   ├── 周朝.doc
+    │   ├── 先秦国君列表.doc
+    │   ├── 秦朝.doc
+    │   ├── 秦朝皇帝列表.doc
+    │   ├── 汉朝.doc
+    │   ├── 新朝.doc
+    │   ├── 汉朝皇帝列表.doc
+    │   ├── 三国.doc
+    │   ├── 晋朝.doc
+    │   ├── 晋朝皇帝列表.doc
+    │   ├── 五胡十六国.doc
+    │   ├── 南北朝皇帝列表.doc
+    │   ├── 隋朝.doc
+    │   ├── 隋朝皇帝列表.doc
+    │   ├── 唐朝.doc
+    │   ├── 唐朝皇帝列表.doc
+    │   ├── 五代十国.doc
+    │   ├── 五代十国皇帝列表.doc
+    │   ├── 宋朝.doc
+    │   ├── 宋朝皇帝列表.doc
+    │   ├── 西夏.doc
+    │   ├── 元朝.doc
+    │   ├── 元朝皇帝列表.doc
+    │   ├── 明朝.doc
+    │   ├── 明朝皇帝列表.doc
+    │   ├── 清朝.doc
+    │   ├── 清朝皇帝列表.doc
+    │   ├── 百家姓.doc
+    │   ├── 百家姓QQ头像.doc
+    │   ├── 天干地支对照表.doc
+    │   ├── 天干地支对照表-2.doc
+    │   ├── 十二时辰.doc
+    │   ├── 十二生肖顺序.doc
+    │   ├── 十二生肖对照表.doc
+    │   ├── 24节气.doc
+    │   ├── 二十四节气.doc
+    │   ├── 月令七十二候集解.doc
+    │   ├── 《渔樵问对》.docx
+    │   ├── 人间词话.docx
+    │   ├── 古三坟雅说.pdf
+    │   ├── 亲戚关系图.docx
+    │   ├── 中国行政区划.doc
+    │   ├── 中国旅行证.doc
+    │   ├── 中国旅行证更换攻略.doc
+    │   ├── 中国护照免签证.doc
+    │   ├── 出入境通行证.doc
+    │   ├── 中国绿卡.doc
+    │   ├── 国民经济行业分类新旧对照表.doc
+    │   ├── 国民经济行业分类.doc
+    │   ├── 中国政府组织结构图.ppt
+    │   ├── 中华人民共和国宪法及香港基本法.pdf 
+    │   ├── 中华人民共和国宪法修正案(2018).pdf
+    │   ├── 中華人民共和國憲法 (English and Traditional Chinese).pdf
+    │   ├── 《中华人民共和国国防法》2020版.docx
+    │   ├── 党和国家中央组织结构图.doc
+    │   ├── 政府人事结构图.jpg
+    │   ├── 中国军队军衔等级.docx
+    │   ├── 中国军队军衔等级.png
+    │   ├── 世界各国GDP排名.doc
+    │   ├── 印花税税率.doc
+    │   ├── 银行存款利息.doc
+    │   ├── 个人所得税计算器.doc
+    │   ├── 中英时差对照表.doc 
+    │   ├── 中美经济贸易协议第一阶段商贸部版.pdf
+    │   ├── 中国大学名单.doc
+    │   ├── 中国大学改名大全.doc
+    │   ├── [天涯 kkndme 神帖聊房价](https://github.com/shengcaishizhan/kkndme_tianya)
+    │   └── 全国车牌归属地查询.doc
+    ├── Map
+    │   ├── 世界地图-放大.jpg
+    │   ├── 世界地图-高清犀利版.xlsx
+    │   ├── 世界歷史地圖.zip
+    │   ├── 中国地图11935x8554.jpg
+    │   ├── 世界地形图.jpg
+    │   ├── 中国地图高清.jpg
+    │   ├── 超高清晰世界地图.jpg
+    │   ├── four_thousand_years_of_world_history.jpg
+    │   ├── 全世界国家和地区.doc
+    │   ├── 世界货币符号.doc
+    │   ├── 世界各国领土面积排名.doc
+    │   ├── 世界各国首都.doc
+    │   ├── 国旗大全.doc
+    │   ├── 世界各国国旗大全.doc
+    │   ├── 国家和地区代码表.doc
+    │   ├── 时差.doc
+    │   ├── 世界帝国谱系图.jpg
+    │   └── 世界帝国发展图.jpeg
+    ├── Other
+    │   ├── EVUS.doc
+    │   ├── IATA代码.doc
+    │   ├── 泰坦尼克号.doc
+    │   ├── 节日大全.doc
+    │   ├── QS世界大学排行榜.doc
+    │   ├── 泰晤士世界大学排名.doc
+    │   ├── 日本首相.doc
+    │   ├── 日本天皇.doc
+    │   ├── 服装尺寸.doc
+    │   ├── 儿童疫苗接种表.docx
+    │   ├── 色盲检查图.doc
+    │   ├── 血型遗传规律表.doc
+    │   ├── 域名大全.doc
+    │   └── 末日生存指南
+    ├── USA
+    │   ├── 独立宣言.doc
+    │   ├── 美国13个州.doc
+    │   ├── 美国州名.doc
+    │   ├── 美国行政区划.doc
+    │   ├── 美国政体.ppt
+    │   ├── 美利坚合众国宪法.doc
+    │   ├── 美利坚合众国宪法中文版.pdf
+    │   ├── 美国宪法修正案.doc
+    │   ├── 美国宪法修正案第14条.doc
+    │   ├── 201101-us-legal-system.pdf
+    │   ├── Economic_And_Trade_Agreement_Between_The_United_States_And_China_Text.pdf
+    │   ├── 美国国会.doc
+    │   ├── 美国历任总统名单.docx
+    │   ├── 美国总统排行榜.doc
+    │   ├── 美国最伟大的总统.doc
+    │   ├── 美国副总统.docx
+    │   ├── 美国国务卿.docx
+    │   ├── 特朗普.doc
+    │   ├── 川普告別演說（中英双语文稿）.docx
+    │   ├── 美国第一夫人.doc
+    │   ├── 美国航空母舰.doc
+    │   ├── 美国入境.doc
+    │   ├── 美国签证.doc
+    │   ├── 美国护照.doc
+    │   ├── 美国护照申请.doc
+    │   ├── 美国社会安全号码.doc
+    │   ├── 美国创世记：埃利斯建国史系列（套装共4册）.pdf
+    │   ├── 奠基者：独立战争那一代.pdf
+    │   ├── 革命之夏美国独立的起源.pdf
+    │   ├── 杰斐逊选集（朱曾汶译，替本，商务印书馆1999）.pdf
+    │   ├── 《美国宪政历程：影响美国的25个司法大案》.PDF 
+    │   ├── 世界各国政体.doc
+    │   ├── 近现代世界主要国家政体结构图.ppt
+    │   ├── 英法美德资产阶级政体比较.doc
+    │   ├── 中美时差对照表.doc
+    │   ├── 世界移民报告_2018.pdf
+    │   ├── 赴美生子利与弊.doc
+    │   ├── 赴美生子要多少钱.doc 
+    │   └── 美宝需要哪些证件？.doc
+    ├── political
+    │   ├── 建国方略.pdf
+    │   ├── 《孙中山系列合集》.exe
+    │   ├── 孙中山评传.pdf
+    │   ├── 蒋介石日记揭秘（上）.pdf
+    │   ├── 蒋介石日记揭秘（下）.pdf
+    │   ├── 毛泽东选集.exe
+    │   ├── 邓小平文选.exe
+    │   ├── 邓小平时代.pdf（https://pan.baidu.com/s/1cEiEzMHjea4wwSdNfovIRQ）
+    │   ├── 周恩来年谱1898-1976.pdf
+    │   ├── 《周恩来传》_[英]迪克·威尔逊+著.pdf
+    │   ├── 胡耀邦传.pdf
+    │   ├── 赵紫阳传（赵蔚）.pdf
+    │   ├── 赵紫阳：改革历程.pdf
+    │   ├── 马基雅维里：君主论.pdf 
+    │   ├── 论法的精神.pdf
+    │   ├── 论自愿为奴.pdf
+    │   ├── 《论美国的民主》上下卷-[法]托克维尔.pdf
+    │   ├── 《常识》托马斯·潘恩.pdf
+    │   ├── 哈耶克作品集全六册.pdf
+    │   ├── 英国《大宪章》中英对照.docx
+    │   ├── 法国《人权宣言》中英译文.docx
+    │   ├── 林肯葛底斯堡演说中英互译.doc 
+    │   ├── 两个有趣的寓言故事——狮子、狼与羊.docx
+    │   ├── 反乌托邦小说三部曲(美丽新世界_1984_我们).pdf
+    │   ├── 古拉格群岛-上/中/下[苏联]索尔仁尼琴.田大畏等译.群众出版社.pdf
+    │   ├── 亚历山大·索尔仁尼琴：古拉格群岛.html.zip
+    │   ├── 《娱乐至死》[美]尼尔·波兹曼.pdf
+    │   └── 乌合之众：大众心理研究.pdf
+    ├── novel
+    │   ├── 白鹿原.txt
+    │   ├── 平凡的世界：(https://chegva.com/3101.html)
+    │   ├── 活着.txt
+    │   ├── 《狼图腾》.txt
+    │   ├── 遥远的救世主.txt
+    │   ├── 《围城》.txt
+    │   ├── 《围城》.pdf
+    │   ├── 乡土中国.pdf
+    │   ├── 乔治·奥威尔：动物庄园.pdf
+    │   ├── 乔治·奥威尔：一九八四.pdf
+    │   ├── 美丽新世界.txt
+    │   ├── 三体
+    │   ├── 北京折叠.txt
+    │   ├── 一只特立独行的猪.pdf
+    │   ├── 局外人+鼠疫.pdf
+    │   └── 中国古代建筑史（第二版）刘敦桢.pdf
+    └── religion
+        ├── [圣经（中文、英文原版及NIV朗读版）].新世界.扫描版.zip
+        ├── 《圣经》完整版.txt
+        ├── 论自由意志：奥古斯丁对话录二篇.成官泯译.上海人民出版社(2010).pdf
+        ├── 忏悔录[古罗马]奥古斯丁.周士良译.商务印书馆(1996).pdf
+        ├── 论三位一体[古罗马]奥古斯丁.周伟驰译(2005).pdf
+        ├── 天主之城-上[古罗马]奥古斯丁.吴宗文译(2010).pdf
+        ├── 天主之城-下[古罗马]奥古斯丁.吴宗文译(2010).pdf
+        ├── 上帝之城.[古罗马]圣·奥古斯丁.扫描版.pdf
+        ├── 上帝之城：驳异教徒-上[古罗马]奥古斯丁.吴飞译.上海三联书店(2007).pdf
+        ├── 上帝之城：驳异教徒-中[古罗马]奥古斯丁.吴飞译.上海三联书店(2008).pdf
+        ├── 上帝之城：驳异教徒-下[古罗马]奥古斯丁.吴飞译.上海三联书店(2009).pdf
+        ├── 驳朱利安[古罗马]奥古斯丁.石敏敏译.中国社会科学出版社(2010).pdf
+        ├── 道德论集[古罗马]奥古斯丁.石敏敏译.三联书店(2009).pdf
+        ├── 论灵魂及其起源[奥古斯丁].pdf
+        ├── 论信望爱[古罗马]奥古斯丁.许一新译.三联书店(2009).pdf
+        ├── 神曲(三册)意大利-但丁-田德望译.pdf
+        ├── Chinese Quran Inside Text.pdf
+        ├── 邪教的十个特征.docx
+        ├── 意识的解释-丹尼尔.丹尼特.pdf
+        └── 看过的电影推荐清单.md
+```
+
+> 资料/地图来源
+- [互动世界历史地图集](http://geacron.com/home-zh-hans/)
+- [Mapping History](https://mappinghistory.uoregon.edu/english/index.html)
+- [中国历史地图](https://www.ageeye.cn/china/)
+- [太史古卷](http://hisgeomap.com/)
+- [全历史](https://www.allhistory.com/)
+- http://114.xixik.com
+- https://www.zhihu.com/question/27845854
+- https://chegva.com/read/
+- https://github.com/programthink/books
+- [HarborLibrary](https://github.com/HarborLibrary)
+- [ZLibary](https://fr.be1lib.org/)
+- [美国历史系列 | ShareAmerica](https://share.america.gov/zh-hans/page/19/?s=%E7%BE%8E%E5%9B%BD%E5%8E%86%E5%8F%B2%E7%B3%BB%E5%88%97)
+- 网络
+# PyAstronomy
+
+What is it?
+-----------
+
+  PyAstronomy is a collection of astronomy-related
+  packages written in Python.
+
+  Currently, the following subpackages are available:
+
+    funcFit:    A convenient fitting package providing support
+                for minimization and MCMC sampling.
+
+    modelSuite: A Set of astrophysical models (e.g., transit
+                light-curve modeling), which can be used
+                stand-alone or with funcFit.
+
+    AstroLib:   A set of useful routines including a number
+                of ports from IDL's astrolib.
+
+    Constants:  The package provides a number of often-needed
+                constants.
+
+    Timing:     Provides algorithms for timing analysis such as
+                the Lomb-Scargle and the Generalized Lomb-Scargle
+                periodogram
+
+    pyaGUI:     A collection of GUI tools for interactive work.
+
+Installation
+------------
+
+  To install the latest release via pip from PyPI use
+  
+    pip install PyAstronomy[occult]
+    
+  or
+  
+    pip install git+https://github.com/sczesla/PyAstronomy.git#egg=PyAstronomy[occult]
+    
+  to install the current state from github including non-Python dependencies. Remove [occult]
+  to skip these dependencies.
+  
+  Alternatively, download the source and use
+  
+    python setup.py [--with-ext] install
+    
+  If you specify the `--with-ext` flag, setup will try to
+  compile non-Python modules.
+
+Documentation and further information
+-------------------------------------
+
+  View the latest documentation on [Read the
+  Docs](https://pyastronomy.readthedocs.org/en/latest/)
+
+  Visit the documentation of the latest release:
+  
+  https://pyastronomy.readthedocs.io/en/v_0-19-0/
+
+Licensing
+---------
+
+  Where not stated otherwise, PyAstronomy is released under the
+  MIT license (see also documentation).
+# astronomy
+Astronomy Library for C++
+
+| ⚠️ This repository is no longer maintained |
+| :--------------------------------------------: |
+
+### Please visit the new project repository: [**BoostGSoC19/astronomy**](https://github.com/BoostGSoC19/astronomy).
+
+Until astronomy becomes an official part of Boost C++ Library collection and gets official repository all the work will take place in [BoostGSoC19/astronomy](https://github.com/BoostGSoC19/astronomy) or any newer GSoC or such program repository.
