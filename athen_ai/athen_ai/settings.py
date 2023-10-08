@@ -76,12 +76,8 @@ WSGI_APPLICATION = 'athen_ai.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test_db',
-        'USER':'root',
-        'PASSWORD':'iamroot42',
-        'HOST':'localhost',
-        'PORT':'3306'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR.joinpath('mydb.sqlite3')  # Customize the database file path
     }
 }
 
