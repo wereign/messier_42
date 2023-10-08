@@ -3,20 +3,12 @@ import json
 import base64
 
 
-access_token = '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'
-
-
-
+access_token = ''
 
 # API headers
 headers = {'Authorization': f'token {access_token}'}
-# response = requests.get(topic_search_url, headers=headers)
-
-
-
 
 def search_topics(topics_list):
-    
         
     for topic in topics_list:
         topic_search_url = f'https://api.github.com/search/repositories?q=topic:{topic}'
@@ -58,9 +50,9 @@ def search_descriptions(keywords_list):
         return repo_links_list
 
 
-def save_readme(repo_deets_list:str,path):
+def get_projects_from_keywords(repo_deets_list:str):
     
-    all_readmes = []
+    projects_list = []
     for repo in repo_deets_list:
         
         username = repo['username']
@@ -69,18 +61,18 @@ def save_readme(repo_deets_list:str,path):
         response = requests.get(readme_url)
         
         if response.status_code == 200:
-            
-            print(response.json())
             readme_content_base64 = response.json()['content']
+            print(readme_content_base64)
             readme_content = base64.b64decode(readme_content_base64).decode('utf-8','ignore')
-            print('-----------------------------')
-            print(readme_content)
-            all_readmes.append(readme_content)
         
-    with open(path, 'w', encoding='utf-8', errors='replace') as txt_file:
-        txt_file.writelines(all_readmes)
-    
-    return all_readmes
+        project_dict = {
+            "repo_url":f"https://api.github.com/repos/{username}/{repo_name}",
+            "readme_markdown":readme_content,
+        }  
+
+        projects_list.append(project_dict)  
+
+    return projects_list
 
 if __name__ == '__main__':
 
@@ -91,9 +83,7 @@ if __name__ == '__main__':
 
             
             all_topics[i] = all_topics[i].replace('\n','')
-        
-        print(all_topics)
-    
-    urls_list = search_topics(all_topics)
-    # urls_list2 = search_descriptions(all_topics)
-    save_readme(urls_list,path='./text_corpus2.txt')
+    # urls_list = search_topics(all_topics)
+    urls_list2 = search_descriptions(all_topics)
+    # print(urls_list2)
+    print(get_projects_from_keywords(urls_list2))
